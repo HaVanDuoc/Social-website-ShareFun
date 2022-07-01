@@ -1,9 +1,21 @@
+import { Fragment } from "react";
+import "./DefaultLayout.scss";
+import { Feed, Rightbar, Sidebar, Topbar } from "../../components";
+
 const DefaultLayout = ({ children }) => {
     return (
-        <div className="defaultLayout">
-            {/* Page */}
-            {children}
-        </div>
+        <Fragment>
+            <Topbar />
+            <div className="layoutContentPage">
+                <div className="subPage">
+                    <Sidebar />
+                </div>
+                <div className="mainPage">
+                    <Feed>{children}</Feed>
+                    <Rightbar />
+                </div>
+            </div>
+        </Fragment>
     );
 };
 

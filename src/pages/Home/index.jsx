@@ -1,23 +1,7 @@
-import React, { Fragment } from "react";
-import { Feed, Rightbar, Sidebar, Topbar } from "../../components/";
+import React from "react";
 
 const Home = () => {
-    return (
-        <Fragment>
-            <Topbar />
-            <div className="layoutContentPage">
-                <Sidebar />
-                <div className="contentPage">
-                    <div className="mainPage">
-                        <Feed />
-                    </div>
-                    <div className="subPage">
-                        <Rightbar />
-                    </div>
-                </div>
-            </div>
-        </Fragment>
-    );
+    return <h2>Home</h2>;
 };
 
 export default Home;

@@ -1,0 +1,14 @@
+.layoutContentPage {
+    display: flex;
+    justify-content: center;
+
+    .subPage {
+        flex: 1;
+        background-color: rebeccapurple;
+    }
+
+    .mainPage {
+        flex: 3;
+    }
+    background-color: red;
+}
