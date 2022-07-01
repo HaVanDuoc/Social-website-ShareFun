@@ -1,9 +1,9 @@
 const DefaultLayout = ({ children }) => {
     return (
-        <>
-            <div>DefaultLayout</div>
+        <div className="defaultLayout">
+            {/* Page */}
             {children}
-        </>
+        </div>
     );
 };
 
