@@ -3,7 +3,7 @@
 :root {
     --main-color: dodgerblue;
     --font-color: #000;
-    --hover-color: #fbfafa;
+    --hover-color: #e6e2e2;
 }
 
 * {
@@ -27,6 +27,16 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+ul,
+li {
+    list-style: none;
 }
 
 .badgeIcon {
