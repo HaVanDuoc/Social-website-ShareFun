@@ -1,7 +1,7 @@
 import React from "react";
 
 const Rightbar = () => {
-    return <div>Rightbar</div>;
+    return <div className="hvdRightBar">Rightbar</div>;
 };
 
 export default Rightbar;

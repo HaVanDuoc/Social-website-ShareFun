@@ -10,10 +10,7 @@ const DefaultLayout = ({ children }) => {
                 <div className="subPage">
                     <Sidebar />
                 </div>
-                <div className="mainPage">
-                    <Feed>{children}</Feed>
-                    <Rightbar />
-                </div>
+                <div className="mainPage">{children}</div>
             </div>
         </Fragment>
     );

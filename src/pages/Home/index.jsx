@@ -1,7 +1,14 @@
 import React from "react";
+import "./Home.scss";
+import { Feed, Rightbar } from "../../components/";
 
 const Home = () => {
-    return <h2>Home</h2>;
+    return (
+        <div id="hvdHomePage">
+            <Feed />
+            <Rightbar />
+        </div>
+    );
 };
 
 export default Home;

@@ -1,6 +1,9 @@
 import React from "react";
 import "./Topbar.scss";
 
+// Components
+import { Avatar } from "../../components";
+
 // Icons
 import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -38,9 +41,9 @@ const Topbar = () => {
                         <NotificationsNoneIcon />
                     </div>
                     <div className="wrapperIcon accountIcon">
-                        <div className="avatar">
-                            <img src="/assets/avatar/avt.jpg" alt="" />
-                        </div>
+                        <Avatar>
+                            <img src="/assets/avatar/avt.jpg" alt="avatar" />
+                        </Avatar>
                     </div>
                 </div>
             </div>
