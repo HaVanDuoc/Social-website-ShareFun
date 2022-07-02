@@ -64,8 +64,35 @@
         }
     }
 
+    .sidebarNavButton {
+        font-size: 1rem;
+        color: var(--font-color);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        line-height: 3;
+        padding: 0 20px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--hover-color);
+        }
+
+        a {
+            display: flex;
+        }
+
+        i {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+    }
+
     .sidebarFooter {
-        position: relative;
+        position: absolute;
+        bottom: 0;
         padding: 10px;
         font-size: 13px;
 

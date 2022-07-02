@@ -9,6 +9,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import EventIcon from "@mui/icons-material/Event";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const NavLinks = [
     {
@@ -124,15 +125,26 @@ const Sidebar = () => {
         <div className="hvdSidebar">
             <div className="title">Gợi ý</div>
             <ul className="sidebarNavLink">
-                {NavLinks.map((item, index) => (
-                    <li className="navItem" key={index}>
-                        <a href={item.path}>
-                            <i>{item.icon}</i>
-                            <span>{item.name}</span>
-                        </a>
-                    </li>
-                ))}
+                {NavLinks.map((item, index) => {
+                    if (index < 10) {
+                        var Item = (
+                            <li className="navItem" key={index}>
+                                <a href={item.path}>
+                                    <i>{item.icon}</i>
+                                    <span>{item.name}</span>
+                                </a>
+                            </li>
+                        );
+                    }
+                    return Item;
+                })}
             </ul>
+            <div className="sidebarNavButton">
+                <i>
+                    <ArrowDropDownIcon />
+                </i>
+                <span>Xem thêm</span>
+            </div>
             <footer className="sidebarFooter">
                 <ul className="sidebarFooterLink">
                     {FooterLinks.map((item, index) => (
