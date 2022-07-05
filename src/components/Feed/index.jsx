@@ -9,6 +9,10 @@ const Feed = () => {
                 <CreatePost />
 
                 <Post />
+                <Post />
+                <Post />
+                <Post />
+                <Post />
             </div>
         </div>
     );
