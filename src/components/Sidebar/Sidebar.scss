@@ -1,5 +1,7 @@
 .hvdSidebar {
-    position: relative;
+    position: fixed;
+    left: 0;
+    width: 379px;
     height: calc(100vh - 70px);
     padding: 10px;
     overflow-y: scroll;
