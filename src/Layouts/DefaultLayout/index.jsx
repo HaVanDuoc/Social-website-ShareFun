@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import "./DefaultLayout.scss";
-import { Feed, Rightbar, Sidebar, Topbar } from "../../components";
+import { Sidebar, Topbar } from "../../components";
 
 const DefaultLayout = ({ children }) => {
     return (
