@@ -109,8 +109,7 @@
 
         .post__footer {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
 
             i.favoriteIcon {
                 color: red;
@@ -128,28 +127,67 @@
                 color: green;
             }
 
-            div {
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .showInteractive {
+                padding: 5px 0;
+                margin-bottom: 10px;
                 font-size: 0.8rem;
-                border-radius: 5px;
-                padding: 7px 10px;
-                background-color: transparent;
-                color: var(--font-color);
-                cursor: pointer;
+                border-top: 1px solid lightgray;
+                border-bottom: 1px solid lightgray;
+                display: flex;
+                flex-direction: row;
 
-                &:hover {
-                    background-color: var(--hover-color);
+                div {
+                    display: flex;
+                    align-items: center;
                 }
 
                 i {
+                    transform: scale(75%);
+                }
+
+                span {
+                    cursor: pointer;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .view {
+                    flex: 1;
+                    justify-content: flex-end;
+                }
+
+            }
+
+            .postInteraction {
+                display: flex;
+                flex-direction: row;
+
+                div {
+                    flex: 1;
                     display: flex;
+                    justify-content: center;
                     align-items: center;
-                    margin-right: 10px;
+                    font-size: 0.8rem;
+                    border-radius: 5px;
+                    padding: 7px 10px;
+                    background-color: transparent;
+                    color: var(--font-color);
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: var(--hover-color);
+                    }
+
+                    i {
+                        display: flex;
+                        align-items: center;
+                        margin-right: 10px;
+                    }
                 }
             }
+
         }
     }
 }
