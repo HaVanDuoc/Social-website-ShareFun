@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./Posts.scss";
 
 // Icons
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ReplyIcon from "@mui/icons-material/Reply";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const Posts = () => {
+const Posts = ({ post }) => {
     return (
         <div className="hvdPosts">
             <div className="postWrapper">
@@ -23,57 +23,47 @@ const Posts = () => {
                                     flexDirection: "column",
                                 }}
                             >
-                                <div className="post__username">username</div>
-                                <div className="post__date">2312</div>
+                                <div className="post__username">
+                                    {post.username}
+                                </div>
+                                <div className="post__date">{post.date}</div>
                             </div>
                         </div>
                         <div className="post__following">Theo Dõi</div>
                     </div>
 
                     <div className="post__body">
-                        <div className="post__title">
-                            Chúc mừng sinh nhật, Barbara!
-                        </div>
+                        <div className="post__title">{post.title}</div>
                         <div className="post__content">
+                            <div>{post.desc}</div>
                             <div>
-                                Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Accusantium, molestias.
-                                Consequatur, quo dignissimos? Sed asperiores
-                                soluta aliquid explicabo sequi magni repellat
-                                sint, delectus in perferendis voluptatibus
-                                doloribus. Aspernatur, id ad!
-                            </div>
-                            <div>
-                                <img
-                                    src="/assets/images-post/post-img.png"
-                                    alt=""
-                                />
+                                <img src={post.photo} alt="" />
                             </div>
                         </div>
-                        <div className="post__topic">#tag</div>
+                        <div className="post__topic">{post.tag}</div>
                     </div>
 
                     <div className="post__footer">
                         <div className="like">
-                            <i>
-                                <FavoriteBorderIcon />
+                            <i className="favoriteIcon">
+                                <FavoriteIcon />
                             </i>
                             <span>Yêu thích</span>
                         </div>
                         <div className="comment">
-                            <i>
+                            <i className="commentIcon">
                                 <ChatBubbleOutlineIcon />
                             </i>
                             <span>Bình luận</span>
                         </div>
                         <div className="share">
-                            <i>
+                            <i className="shareIcon">
                                 <ReplyIcon />
                             </i>
                             <span>Chia sẻ</span>
                         </div>
                         <div className="view">
-                            <i>
+                            <i className="viewIcon">
                                 <VisibilityIcon />
                             </i>
                             <span>View</span>

@@ -112,6 +112,22 @@
             justify-content: center;
             align-items: center;
 
+            i.favoriteIcon {
+                color: red;
+            }
+
+            i.commentIcon {
+                color: dodgerblue;
+            }
+
+            i.shareIcon {
+                color: blue;
+            }
+
+            i.viewIcon {
+                color: green;
+            }
+
             div {
                 flex: 1;
                 display: flex;

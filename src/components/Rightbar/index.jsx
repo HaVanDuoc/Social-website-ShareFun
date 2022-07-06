@@ -1,8 +1,8 @@
 import React from "react";
 import "./Rightbar.scss";
 
-import CampaignIcon from "@mui/icons-material/Campaign";
-// import Banner from "../Banner";
+// data
+import { DataHotTopic, DataOfficialInformation } from "./Data";
 
 const Rightbar = () => {
     return (
@@ -11,32 +11,25 @@ const Rightbar = () => {
                 {/* <div className="rightbarBanner"><Banner /></div> */}
                 <div className="rightbarComponent officialInformation">
                     <div className="rightbarTitle">Thông tin chính thức</div>
-                    <div className="rightbarItem">
-                        <i style={{ color: "dodgerblue" }}>
-                            <CampaignIcon />
-                        </i>
-                        <span>Quy tắc cộng đồng</span>
-                    </div>
+                    {DataOfficialInformation.map((item) => (
+                        <div className="rightbarItem" key={item.id}>
+                            <i style={{ color: "dodgerblue" }}>{item.icon}</i>
+                            <span>{item.name}</span>
+                        </div>
+                    ))}
                 </div>
                 <div className="rightbarComponent hotTopic">
                     <div className="rightbarTitle">Chủ đề hot</div>
 
-                    <div className="rightbarItem hotTopicItem">
-                        <div className="name">#xuhuong</div>
-                        <div className="count">10k bài đăng</div>
-                    </div>
-                    <div className="rightbarItem hotTopicItem">
-                        <div className="name">#xuhuong</div>
-                        <div className="count">10k bài đăng</div>
-                    </div>
-                    <div className="rightbarItem hotTopicItem">
-                        <div className="name">#xuhuong</div>
-                        <div className="count">10k bài đăng</div>
-                    </div>
-                    <div className="rightbarItem hotTopicItem">
-                        <div className="name">#xuhuong</div>
-                        <div className="count">10k bài đăng</div>
-                    </div>
+                    {DataHotTopic.map((item) => (
+                        <div
+                            className="rightbarItem hotTopicItem"
+                            key={item.id}
+                        >
+                            <div className="name">{item.name}</div>
+                            <div className="count">{item.count}</div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
