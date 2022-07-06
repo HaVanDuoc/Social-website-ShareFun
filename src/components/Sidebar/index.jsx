@@ -5,8 +5,6 @@ import "./Sidebar.scss";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { FooterLinks, NavLinks } from "./Array";
 
-
-
 const Sidebar = () => {
     return (
         <div className="hvdSidebar">

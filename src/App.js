@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import DefaultLayout from "./Layouts/DefaultLayout";
+import { DefaultLayout } from "./Layouts/";
 import { publicRoutes } from "./routes";
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
             <div className="__havanduoc">
                 <Routes>
                     {publicRoutes.map((route, index) => {
-                        const Layout = DefaultLayout; // DefaultLayout is default
+                        let Layout = route.layout || DefaultLayout;
+
                         const Page = route.page;
                         return (
                             <Route

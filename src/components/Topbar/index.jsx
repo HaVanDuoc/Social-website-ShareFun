@@ -15,7 +15,9 @@ const Topbar = () => {
         <div className="hvdTopBar">
             <div className="topbarContainer">
                 <div className="topbarLeft">
-                    <div className="logo">HaVanDuoc</div>
+                    <a href="/" className="logo">
+                        HaVanDuoc
+                    </a>
                 </div>
                 <div className="topbarCenter">
                     <div className="topbarSearch">
