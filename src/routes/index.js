@@ -6,7 +6,7 @@ const publicRoutes = [
     { path: "/", page: Home },
     { path: "/home", page: Home },
     { path: "/friends", page: Friends },
-    { path: "/profile", page: Profile, layout: ProfileLayout },
+    { path: "/profile", page: Profile },
 ];
 
 export { publicRoutes };

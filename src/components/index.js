@@ -5,4 +5,5 @@ export { default as Feed } from "./Feed";
 export { default as Rightbar } from "./Rightbar";
 export { default as Avatar } from "./Avatar";
 export { default as CreatePost } from "./CreatePost";
-export { default as Post } from "./Posts";
+export { default as Posts } from "./Posts";
+export { default as Panel } from "./Panel";
