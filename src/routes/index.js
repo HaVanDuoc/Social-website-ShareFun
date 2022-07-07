@@ -1,5 +1,5 @@
-import { ProfileLayout } from "../Layouts";
-import { Friends, Home, Profile } from "../pages";
+import { LoginLayout } from "../Layouts/";
+import { Friends, Home, Login, Profile } from "../pages";
 
 // Public Routes
 const publicRoutes = [
@@ -7,6 +7,7 @@ const publicRoutes = [
     { path: "/home", page: Home },
     { path: "/friends", page: Friends },
     { path: "/profile", page: Profile },
+    { path: "/login", page: Login, layout: LoginLayout },
 ];
 
 export { publicRoutes };
