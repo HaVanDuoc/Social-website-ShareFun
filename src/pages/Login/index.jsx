@@ -1,6 +1,8 @@
 import React from "react";
 import "./Login.scss";
 
+import { FormLogin } from "../../components/";
+
 const Login = () => {
     return (
         <div className="hvdLogin">
@@ -12,21 +14,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="rightPage">
-                    <form className="formLogin">
-                        <input
-                            type="text"
-                            placeholder="Email hoặc số điện thoại"
-                        />
-                        <input type="password" placeholder="Mật khẩu" />
-                        <button type="submit" className="loginBtn">
-                            Đăng nhập
-                        </button>
-                        <div className="forgotPasswordLink">Quên mật khẩu?</div>
-                        <hr />
-                        <button className="registerBtn">
-                            Tạo tài khoản mới
-                        </button>
-                    </form>
+                    <FormLogin />
                 </div>
             </div>
         </div>
