@@ -14,7 +14,7 @@ const CreatePost = () => {
                 <div className="childTop">
                     <div className="wrapperIcon">
                         <Avatar border="1px solid lightgray">
-                            <img src="/assets/avatar/avt.jpg" alt="avatar" />
+                            <img src="/images/avatar/avt.jpg" alt="avatar" />
                         </Avatar>
                     </div>
                     <input type="text" placeholder="Bạn đang nghĩ gì thế?" />

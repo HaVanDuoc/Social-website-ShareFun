@@ -44,7 +44,7 @@ const Topbar = () => {
                     </div>
                     <div className="wrapperIcon accountIcon">
                         <Avatar>
-                            <img src="/assets/avatar/avt.jpg" alt="avatar" />
+                            <img src="/images/avatar/avt.jpg" alt="avatar" />
                         </Avatar>
                     </div>
                 </div>
