@@ -27,7 +27,7 @@ const Posts = ({ post }) => {
                     <div className="post__header">
                         <div className="post__poster">
                             <div className="post__avatar">
-                                <img src="/assets/avatar/avt.jpg" alt="" />
+                                <img src="/images/avatar/avt.jpg" alt="" />
                             </div>
                             <div
                                 style={{
