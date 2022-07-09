@@ -3,8 +3,6 @@ import "./Panel.scss";
 
 import HomeIcon from "@mui/icons-material/Home";
 
-const arrayButton = [];
-
 const Panel = () => {
     return (
         <div className="hvdPanel">

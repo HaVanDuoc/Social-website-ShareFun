@@ -9,15 +9,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { Link } from "react-router-dom";
 
 const Topbar = () => {
     return (
         <div className="hvdTopBar">
             <div className="topbarContainer">
                 <div className="topbarLeft">
-                    <a href="/" className="logo">
-                        HaVanDuoc
-                    </a>
+                    <Link to="/">
+                        <div className="logo">HaVanDuoc</div>
+                    </Link>
                 </div>
                 <div className="topbarCenter">
                     <div className="topbarSearch">
@@ -42,10 +43,8 @@ const Topbar = () => {
                         <div className="badgeIcon">2</div>
                         <NotificationsNoneIcon />
                     </div>
-                    <div className="wrapperIcon accountIcon">
-                        <Avatar>
-                            <img src="/images/avatar/avt.jpg" alt="avatar" />
-                        </Avatar>
+                    <div className="accountIcon">
+                        <Avatar src="/images/avatar/avt.jpg" />
                     </div>
                 </div>
             </div>

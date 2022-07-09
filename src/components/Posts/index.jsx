@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Posts.scss";
 
+import Avatar from "../Avatar";
+
 // Icons
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -8,10 +10,21 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const Posts = ({ post }) => {
-    const { username, date, title, tag, view, countComment, countShare } = post;
+    const {
+        username,
+        date,
+        title,
+        tag,
+        view,
+        countComment,
+        countShare,
+        desc,
+        photo,
+    } = post;
 
     const [countfavourite, setCountFavourite] = useState(post.countfavourite);
     const [isFavourite, setIsFavourite] = useState(false);
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const handleFavourite = () => {
         setCountFavourite(
@@ -26,9 +39,7 @@ const Posts = ({ post }) => {
                 <div id="post">
                     <div className="post__header">
                         <div className="post__poster">
-                            <div className="post__avatar">
-                                <img src="/images/avatar/avt.jpg" alt="" />
-                            </div>
+                            <Avatar src="/images/avatar/avt.jpg" />
                             <div
                                 style={{
                                     display: "flex",
@@ -45,15 +56,13 @@ const Posts = ({ post }) => {
                     </div>
 
                     <div className="post__body">
-                        {/* title */}
                         <div className="post__title">{title}</div>
                         <div className="post__content">
-                            <div>{post.desc}</div>
+                            <div>{desc}</div>
                             <div>
-                                <img src={post.photo} alt="" />
+                                <img src={PF + photo} alt="" />
                             </div>
                         </div>
-                        {/* tag */}
                         <div className="post__topic">{tag}</div>
                     </div>
 

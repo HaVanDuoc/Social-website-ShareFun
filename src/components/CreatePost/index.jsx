@@ -12,11 +12,10 @@ const CreatePost = () => {
         <div className="hvdCreatePost">
             <div className="createPostWrapper">
                 <div className="childTop">
-                    <div className="wrapperIcon">
-                        <Avatar border="1px solid lightgray">
-                            <img src="/images/avatar/avt.jpg" alt="avatar" />
-                        </Avatar>
-                    </div>
+                    <Avatar
+                        src="/images/avatar/avt.jpg"
+                        border="1px solid lightgray"
+                    />
                     <input type="text" placeholder="Bạn đang nghĩ gì thế?" />
                 </div>
                 <div className="childBottom">

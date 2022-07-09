@@ -5,18 +5,23 @@ import { CreatePost, Posts } from "../../components/";
 import { PostData } from "../../components/Feed/Data";
 
 const Profile = () => {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
         <div className="hvdProfile">
             <div className="headerProfile">
                 <div className="coverImage">
                     <img
-                        src="/assets/profile/Genshin Impact Wallpaper - 4K.jpg"
+                        src={
+                            PF +
+                            "/images/profile/Genshin Impact Wallpaper - 4K.jpg"
+                        }
                         alt=""
                     />
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
-                        <img src="/assets/avatar/avt.jpg" alt="" />
+                        <img src={PF + "/images/avatar/avt.jpg"} alt="" />
                     </div>
                     <div className="userName">Hà Văn Được</div>
                     <div className="signature">Hello! I'm Duoc.</div>
