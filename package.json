@@ -13,6 +13,7 @@
     "@tippyjs/react": "^4.2.6",
     "customize-cra": "^1.0.0",
     "jquery": "^3.6.0",
+    "normalize.css": "^8.0.1",
     "owl.carousel": "^2.3.4",
     "react": "^18.2.0",
     "react-app-rewired": "^2.2.1",
