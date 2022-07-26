@@ -11,13 +11,7 @@ const Profile = () => {
         <div className="hvdProfile">
             <div className="headerProfile">
                 <div className="coverImage">
-                    <img
-                        src={
-                            PF +
-                            "/images/profile/Genshin Impact Wallpaper - 4K.jpg"
-                        }
-                        alt=""
-                    />
+                    <img src={`${PF}images/profile/coverPicture.jpg`} alt="" />
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
