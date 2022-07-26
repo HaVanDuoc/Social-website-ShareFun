@@ -1,0 +1,15 @@
+.layoutContentPage {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .subPage {
+        position: relative;
+        flex: 1;
+    }
+
+    .mainPage {
+        flex: 3;
+    }
+
+}

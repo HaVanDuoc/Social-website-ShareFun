@@ -1,0 +1,190 @@
+.hvdPosts {
+    position: relative;
+
+    .postWrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        // padding-bottom: 50px;
+    }
+
+    #post {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+
+        .post__header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .post__poster {
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                cursor: pointer;
+
+
+                :first-child {
+                    margin-right: 5px;
+                }
+
+                &:hover .post__username {
+                    text-decoration: underline;
+                }
+
+                .post__username {
+                    color: #000;
+                    font-weight: 500;
+                    font-size: 1rem;
+                }
+
+                .post__date {
+                    color: var(--font-color);
+                    font-size: 0.8rem;
+                }
+            }
+
+        }
+
+        .post__following {
+
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: var(--main-color);
+            background-color: #00ffff4b;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(0, 179, 255);
+                color: #fff;
+                transition: all 0.4s ease;
+            }
+
+        }
+    }
+
+    .post__body {
+        margin: 10px 0;
+
+        .post__title {
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .post__content {
+            font-size: .9rem;
+            margin: 10px 0;
+
+            div {
+                margin: 10px 0;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .post__topic {
+        font-size: .8rem;
+        color: var(--main-color);
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .post__footer {
+        display: flex;
+        flex-direction: column;
+
+        i.favoriteIcon {
+            color: red;
+        }
+
+        i.commentIcon {
+            color: dodgerblue;
+        }
+
+        i.shareIcon {
+            color: blue;
+        }
+
+        i.viewIcon {
+            color: green;
+        }
+
+        .showInteractive {
+            padding: 5px 0;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            border-top: 1px solid lightgray;
+            border-bottom: 1px solid lightgray;
+            display: flex;
+            flex-direction: row;
+
+            div {
+                display: flex;
+                align-items: center;
+            }
+
+            i {
+                transform: scale(75%);
+            }
+
+            span {
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .view {
+                flex: 1;
+                justify-content: flex-end;
+            }
+
+        }
+
+        .postInteraction {
+            display: flex;
+            flex-direction: row;
+
+            div {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 0.8rem;
+                border-radius: 5px;
+                padding: 7px 10px;
+                background-color: transparent;
+                color: var(--font-color);
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--hover-color);
+                }
+
+                i {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+    }
+}

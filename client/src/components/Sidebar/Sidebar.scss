@@ -1,0 +1,115 @@
+.hvdSidebar {
+    position: fixed;
+    left: 0;
+    width: 379px;
+    height: calc(100vh - 70px);
+    padding: 10px;
+    overflow-y: scroll;
+    transition: all .4s ease;
+
+    &:hover::-webkit-scrollbar {
+        display: block;
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #cdc9c9;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: #b4b0b0;
+        }
+    }
+
+    .title {
+        font-weight: 500;
+        padding: 10px 20px;
+    }
+
+    .sidebarNavLink {
+        display: flex;
+        flex-direction: column;
+        // height: 100%;
+
+        .navItem {
+            font-size: 1rem;
+            color: var(--font-color);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            line-height: 3;
+            padding: 0 20px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--hover-color);
+            }
+
+            a {
+                display: flex;
+            }
+
+            i {
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .sidebarSeeMoreButton {
+        font-size: 1rem;
+        color: var(--font-color);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        line-height: 3;
+        padding: 0 20px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--hover-color);
+        }
+
+        a {
+            display: flex;
+        }
+
+        i {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+    }
+
+    .sidebarFooter {
+        position: relative;
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 13px;
+
+        .sidebarFooterLink {
+            display: flex;
+            flex-wrap: wrap;
+
+            .footerItem {
+
+                a {
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

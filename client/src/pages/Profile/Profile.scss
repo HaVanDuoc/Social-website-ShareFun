@@ -1,0 +1,157 @@
+:root {
+    --profile-height-avatar: 200px;
+    --profile-tranformY-avatar: calc(var(--profile-height-avatar)/2 * (-1))
+}
+
+.hvdProfile {
+
+    .headerProfile {
+        position: relative;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+        .coverImage {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .infoUser {
+            position: relative;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            flex-direction: column;
+
+            .avatarImage {
+                position: absolute;
+                width: var(--profile-height-avatar);
+                height: var(--profile-height-avatar);
+                border: 5px solid #fff;
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 0 auto;
+                transform: translateY(var(--profile-tranformY-avatar));
+
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .userName {
+                font-size: 2rem;
+                font-weight: 500;
+                margin-bottom: 10px;
+                margin-top: calc(20px + var(--profile-height-avatar) / 2);
+            }
+
+            .signature {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+
+        }
+
+        .activityStatistics {
+            width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+
+            .wrapperItem {
+                flex: auto;
+
+                span {
+                    display: block;
+                    display: flex;
+                    justify-content: center;
+
+                    &:nth-child(odd) {
+                        font-weight: bold;
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .bodyProfile {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        margin: 0 auto;
+        // padding: 20px;
+
+        .subPage {
+            flex: 1;
+            margin: 20px;
+        }
+
+        .mainPage {
+            flex: 1.5;
+            margin: 20px;
+        }
+
+        .subPage {
+            .wrapperItem {
+                margin-bottom: 20px;
+                padding: 20px;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+                .title {
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    padding: 10px 0;
+                }
+
+                .item {
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    margin: 20px 0;
+                    padding: 10px;
+                    text-align: center;
+                    border-radius: 10px;
+                    background-color: #e3e0e0;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #d7d0d0;
+                        transition: all .3s ease;
+                    }
+                }
+            }
+
+            .achievementProfile {
+                .title {
+                    border-bottom: 1px solid lightgray;
+                }
+
+                .item {
+                    display: flex;
+                    margin: 10px 0;
+                    padding: 20px 10px;
+                    background-color: #d7d0d05b;
+
+                    .name {
+                        flex: 1;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+
+}

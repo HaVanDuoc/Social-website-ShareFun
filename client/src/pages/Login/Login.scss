@@ -1,0 +1,37 @@
+.hvdLogin {
+
+    .wrapper {
+        width: 65%;
+        height: 100vh;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        .leftPage {
+            flex: 1;
+
+            .logo {
+                color: var(--main-color);
+                font-size: 3rem;
+                font-weight: 600;
+                margin: 20px 0;
+                pointer-events: none;
+            }
+
+            .slogan {
+                font-size: 1.4rem;
+                pointer-events: none;
+
+            }
+
+        }
+
+        .rightPage {
+            flex: 1;
+        }
+    }
+
+
+
+}
