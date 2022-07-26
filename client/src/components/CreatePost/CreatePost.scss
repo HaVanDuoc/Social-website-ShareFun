@@ -1,0 +1,74 @@
+.hvdCreatePost {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+
+    .createPostWrapper {
+
+        .childTop {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e8e6e6;
+            padding-bottom: 10px;
+
+            >div {
+                margin-right: 10px;
+            }
+
+            input {
+                flex: 1;
+                height: 50px;
+                padding: 0 20px;
+                font-size: 1rem;
+                border: none;
+                border-radius: 50px;
+                background-color: #f4f0f0;
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .childBottom {
+            display: flex;
+            padding-top: 10px;
+
+            .item {
+                display: flex;
+                flex: auto;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--hover-color);
+                }
+
+                i {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 7px;
+
+                    svg {
+                        font-size: 30px;
+                    }
+                }
+            }
+
+            .liveVideo i svg {
+                color: red;
+            }
+
+            .photo i svg {
+                color: green;
+            }
+
+            .emotion i svg {
+                color: rgb(226, 226, 7);
+            }
+        }
+    }
+}

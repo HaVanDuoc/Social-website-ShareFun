@@ -1,0 +1,106 @@
+:root {
+    --topbar-line-height: 50px;
+    --topbar-hover: #fbfafa;
+}
+
+.hvdTopBar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--main-color);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    z-index: 999;
+
+    .topbarContainer {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding: 10px;
+
+        .topbarLeft {
+            margin-right: 10px;
+
+            .logo {
+                color: #fff;
+                font-size: 2em;
+                font-weight: 500;
+                cursor: pointer;
+            }
+        }
+
+        .topbarCenter {
+            margin: 0 20px;
+
+            .topbarSearch {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .topbarSearchBtn {
+                    position: absolute;
+                    left: 0;
+                    color: var(--main-color);
+                }
+
+                .topbarSearchInput {
+                    width: 40vw;
+                    height: var(--topbar-line-height);
+                    border: none;
+                    outline: none;
+                    font-size: 1em;
+                    padding: 0 calc(var(--topbar-line-height)/2) 0 var(--topbar-line-height);
+                    border-radius: var(--topbar-line-height);
+                    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+
+        .topbarRight {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .wrapperItem {
+                position: relative;
+                width: var(--topbar-line-height);
+                height: var(--topbar-line-height);
+                display: flex;
+                border-radius: var(--topbar-line-height);
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .badgeItem {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 20px;
+                height: 20px;
+                font-size: 13px;
+                font-weight: bold;
+                background-color: red;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            // .hoverIcon {
+            //     &:hover {
+            //         background-color: var(--topbar-hover);
+            //         color: var(--main-color);
+            //         transition: all 0.3s ease;
+            //     }
+            // }
+
+            .accountIcon {
+                margin-left: 50px;
+            }
+        }
+    }
+}

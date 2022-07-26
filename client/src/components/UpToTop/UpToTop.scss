@@ -1,0 +1,37 @@
+.hvdUpToTop {
+    position: fixed;
+    top: 85vh;
+    right: 27%;
+    cursor: pointer;
+    z-index: 99;
+    transition: all 0.4s ease;
+
+    img {
+        width: 4.5vw;
+        height: 4.5vw;
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    &:hover {
+        animation: shake 0.5s;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}

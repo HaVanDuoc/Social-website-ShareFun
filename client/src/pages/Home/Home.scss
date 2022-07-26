@@ -1,0 +1,12 @@
+#hvdHomePage {
+    display: flex;
+
+    .hvdFeed {
+        flex: 2;
+    }
+
+    .hvdRightBar {
+        flex: 1;
+    }
+
+}

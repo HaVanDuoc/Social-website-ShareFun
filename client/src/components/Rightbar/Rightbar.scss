@@ -1,0 +1,60 @@
+.hvdRightBar {
+    padding: 25px;
+
+    .rightbarWrapper {
+        margin-right: 20px;
+
+        .rightbarComponent {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .rightbarTitle {
+            color: var(--font-color);
+            margin-bottom: 10px;
+            pointer-events: none;
+        }
+
+        .rightbarItem {
+            padding: 10px;
+            display: flex;
+            justify-content: flex-start;
+            // align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--hover-color);
+            }
+
+            i {
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+            }
+        }
+
+        .rightbarBanner {
+            margin: 10px 0;
+        }
+
+        .hotTopic {
+
+            .hotTopicItem {
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+
+                div {
+                    margin: 5px;
+                }
+
+                .name {
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
