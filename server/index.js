@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const userRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
 
 const PORT = 1810;
 
@@ -20,8 +18,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/server/users", userRoute);
-app.use("/server/auth", authRoute);
+app.get("/", (req, res) => {
+    res.send("hello world");
+});
 
 app.listen(PORT, () => {
     console.log("Server is running!");
