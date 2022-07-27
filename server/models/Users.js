@@ -31,15 +31,15 @@ const UserSchema = new Schema(
             default: "",
         },
         followers: {
-            trype: Array,
+            type: Array,
             default: [],
         },
-        followins: {
-            trype: Array,
+        followings: {
+            type: Array,
             default: [],
         },
         isAdmin: {
-            trype: Boolean,
+            type: Boolean,
             default: false,
         },
         desc: {
