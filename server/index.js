@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
 
 const PORT = 1810;
 
@@ -22,6 +23,7 @@ app.use(morgan("common"));
 
 app.use("/server/users", userRoute);
 app.use("/server/auth", authRoute);
+app.use("/server/posts", postRoute);
 
 app.listen(PORT, () => {
     console.log("Server is running!");

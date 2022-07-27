@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
 const User = require("../models/Users");
+const bcrypt = require("bcrypt");
 
 // http://localhost:1810/server/users/
 router.get("/", async (req, res) => {
@@ -60,8 +60,6 @@ router.get("/:id", async (req, res) => {
 // follow a user
 router.put("/:id/follow", async (req, res) => {
     if (req.body.userId !== req.params.id) {
-        console.log(req.body.userId);
-        console.log(req.params.id);
 
         try {
             const user = await User.findById(req.params.id);
