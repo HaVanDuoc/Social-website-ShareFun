@@ -2,6 +2,7 @@
   "name": "havanduoc-social-react-161429062022",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000/server",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -48,6 +49,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3000/client"
+  }
 }

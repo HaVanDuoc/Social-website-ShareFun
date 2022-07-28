@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Posts.scss";
-
 import Avatar from "../Avatar";
 
 // Icons
@@ -46,9 +45,7 @@ const Posts = ({ post }) => {
                                     flexDirection: "column",
                                 }}
                             >
-                                {/* username */}
                                 <div className="post__username">{username}</div>
-                                {/* date */}
                                 <div className="post__date">{date}</div>
                             </div>
                         </div>
