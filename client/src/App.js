@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DefaultLayout } from "./Layouts/";
 import { publicRoutes } from "./routes";
 
 function App() {
     return (
-        <Router>
-            <div className="__havanduoc">
+        <div className="__havanduoc">
+            <BrowserRouter>
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         let Layout = route.layout || DefaultLayout;
@@ -24,8 +24,8 @@ function App() {
                         );
                     })}
                 </Routes>
-            </div>
-        </Router>
+            </BrowserRouter>
+        </div>
     );
 }
 
