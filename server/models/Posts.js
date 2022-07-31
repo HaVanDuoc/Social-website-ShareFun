@@ -7,6 +7,9 @@ const PostSchema = new Schema(
             type: String,
             require: true,
         },
+        title: {
+            type: String,
+        },
         desc: {
             type: String,
         },
@@ -14,7 +17,23 @@ const PostSchema = new Schema(
             type: String,
             require: true,
         },
-        likes: {
+        tag: {
+            type: Array,
+            default: [],
+        },
+        favourites: {
+            type: Array,
+            default: [],
+        },
+        comments: {
+            type: Array,
+            default: [],
+        },
+        shares: {
+            type: Array,
+            default: [],
+        },
+        views: {
             type: Array,
             default: [],
         },

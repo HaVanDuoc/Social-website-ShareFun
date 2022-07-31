@@ -8,6 +8,17 @@ router.get("/", async (req, res) => {
     res.send("routes users");
 });
 
+// get a user
+router.get("/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        const { password, updateAt, ...other } = user._doc;
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
 // update user
 router.put("/:id", async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -46,24 +57,12 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
-// get a user
-router.get("/:id", async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        const { password, updateAt, ...other } = user._doc;
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-});
-
 // follow a user
 router.put("/:id/follow", async (req, res) => {
     if (req.body.userId !== req.params.id) {
-
         try {
             const user = await User.findById(req.params.id);
-            const currentUser = User.findById(req.body.userId);
+            const currentUser = await User.findById(req.body.userId);
 
             if (!user.followers.includes(req.body.userId)) {
                 await user.updateOne({ $push: { followers: req.body.userId } });
@@ -85,12 +84,9 @@ router.put("/:id/follow", async (req, res) => {
 // unfollow a user
 router.put("/:id/unfollow", async (req, res) => {
     if (req.body.userId !== req.params.id) {
-        console.log(req.body.userId);
-        console.log(req.params.id);
-
         try {
             const user = await User.findById(req.params.id);
-            const currentUser = User.findById(req.body.userId);
+            const currentUser = await User.findById(req.body.userId);
 
             if (user.followers.includes(req.body.userId)) {
                 await user.updateOne({ $pull: { followers: req.body.userId } });

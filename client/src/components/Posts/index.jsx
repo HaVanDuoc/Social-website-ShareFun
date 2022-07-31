@@ -1,29 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Posts.scss";
 import Avatar from "../Avatar";
-
-// Icons
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ReplyIcon from "@mui/icons-material/Reply";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import axios from "axios";
 
 const Posts = ({ post }) => {
     const {
+        userId,
         username,
         date,
         title,
         tag,
-        view,
-        countComment,
-        countShare,
+        favourites,
+        comments,
+        shares,
+        views,
         desc,
         photo,
+        other,
     } = post;
 
-    const [countfavourite, setCountFavourite] = useState(post.countfavourite);
+    const [countfavourite, setCountFavourite] = useState(
+        post.favourites.length
+    );
     const [isFavourite, setIsFavourite] = useState(false);
+    const [user, setUser] = useState({});
+
+    console.log(user);
+
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await axios.get(`users/${post.userId}`);
+            setUser(res.data);
+        };
+        fetchUser();
+    }, []);
 
     const handleFavourite = () => {
         setCountFavourite(
@@ -38,29 +54,38 @@ const Posts = ({ post }) => {
                 <div id="post">
                     <div className="post__header">
                         <div className="post__poster">
-                            <Avatar src="/images/avatar/avt.jpg" />
+                            <Avatar
+                                src={
+                                    user.profilePicture ||
+                                    "images/avatar/noAvatar.png"
+                                }
+                            />
                             <div
                                 style={{
                                     display: "flex",
                                     flexDirection: "column",
                                 }}
                             >
-                                <div className="post__username">{username}</div>
-                                <div className="post__date">{date}</div>
+                                <div className="post__username">
+                                    {user.firstname + " " + user.lastname}
+                                </div>
+                                <div className="post__date">
+                                    {user.createdAt}
+                                </div>
                             </div>
                         </div>
                         <div className="post__following">Theo Dõi</div>
                     </div>
 
                     <div className="post__body">
-                        <div className="post__title">{title}</div>
+                        <div className="post__title">{post.title}</div>
                         <div className="post__content">
-                            <div>{desc}</div>
+                            <div>{post.desc}</div>
                             <div>
-                                <img src={PF + photo} alt="" />
+                                <img src={PF + post.img} alt="" />
                             </div>
                         </div>
-                        <div className="post__topic">{tag}</div>
+                        <div className="post__topic">{post.tag}</div>
                     </div>
 
                     <div className="post__footer">
@@ -81,9 +106,9 @@ const Posts = ({ post }) => {
                                     <ChatBubbleOutlineIcon />
                                 </i>
                                 <span>
-                                    {countComment === 0
+                                    {comments === 0
                                         ? ""
-                                        : countComment + " bình luận"}
+                                        : comments + " bình luận"}
                                 </span>
                             </div>
 
@@ -92,9 +117,7 @@ const Posts = ({ post }) => {
                                     <ReplyIcon />
                                 </i>
                                 <span>
-                                    {countShare === 0
-                                        ? ""
-                                        : countShare + " chia sẻ"}
+                                    {shares === 0 ? "" : shares + " chia sẻ"}
                                 </span>
                             </div>
 
@@ -102,7 +125,7 @@ const Posts = ({ post }) => {
                                 <i className="viewIcon">
                                     <VisibilityIcon />
                                 </i>
-                                <span>{view}</span>
+                                <span>{views}</span>
                             </div>
                         </div>
 

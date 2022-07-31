@@ -22,6 +22,18 @@ const UserSchema = new Schema(
             require: true,
             min: 6,
         },
+        firstname: {
+            type: String,
+            require: true,
+            min: 2,
+            max: 50,
+        },
+        lastname: {
+            type: String,
+            require: true,
+            min: 2,
+            max: 50,
+        },
         profilePicture: {
             type: String,
             default: "",
