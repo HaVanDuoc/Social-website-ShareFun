@@ -6,40 +6,27 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ReplyIcon from "@mui/icons-material/Reply";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 const Posts = ({ post }) => {
-    const {
-        userId,
-        username,
-        date,
-        title,
-        tag,
-        favourites,
-        comments,
-        shares,
-        views,
-        desc,
-        photo,
-        other,
-    } = post;
-
     const [countfavourite, setCountFavourite] = useState(
         post.favourites.length
     );
     const [isFavourite, setIsFavourite] = useState(false);
     const [user, setUser] = useState({});
 
-    console.log(user);
-
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`users/${post.userId}`);
+            const res = await axios.get(`users?username=havanduoc`);
             setUser(res.data);
         };
         fetchUser();
     }, []);
+
+    console.log(user);
 
     const handleFavourite = () => {
         setCountFavourite(
@@ -54,12 +41,14 @@ const Posts = ({ post }) => {
                 <div id="post">
                     <div className="post__header">
                         <div className="post__poster">
-                            <Avatar
-                                src={
-                                    user.profilePicture ||
-                                    "images/avatar/noAvatar.png"
-                                }
-                            />
+                            <Link to={"profile/" + user.username}>
+                                <Avatar
+                                    src={
+                                        user.profilePicture ||
+                                        "images/avatar/noAvatar.png"
+                                    }
+                                />
+                            </Link>
                             <div
                                 style={{
                                     display: "flex",
@@ -70,7 +59,7 @@ const Posts = ({ post }) => {
                                     {user.firstname + " " + user.lastname}
                                 </div>
                                 <div className="post__date">
-                                    {user.createdAt}
+                                    {format(post.createdAt)}
                                 </div>
                             </div>
                         </div>
@@ -106,9 +95,9 @@ const Posts = ({ post }) => {
                                     <ChatBubbleOutlineIcon />
                                 </i>
                                 <span>
-                                    {comments === 0
+                                    {post.comments === 0
                                         ? ""
-                                        : comments + " bình luận"}
+                                        : post.comments + " bình luận"}
                                 </span>
                             </div>
 
@@ -117,7 +106,9 @@ const Posts = ({ post }) => {
                                     <ReplyIcon />
                                 </i>
                                 <span>
-                                    {shares === 0 ? "" : shares + " chia sẻ"}
+                                    {post.shares === 0
+                                        ? ""
+                                        : post.shares + " chia sẻ"}
                                 </span>
                             </div>
 
@@ -125,7 +116,7 @@ const Posts = ({ post }) => {
                                 <i className="viewIcon">
                                     <VisibilityIcon />
                                 </i>
-                                <span>{views}</span>
+                                <span>{post.views}</span>
                             </div>
                         </div>
 

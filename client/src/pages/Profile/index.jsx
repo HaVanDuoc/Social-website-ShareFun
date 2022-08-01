@@ -1,8 +1,7 @@
 import React from "react";
 import "./Profile.scss";
 
-import { CreatePost, Posts } from "../../components/";
-import { PostData } from "../../components/Feed/Data";
+import { Feed } from "../../components/";
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -41,10 +40,7 @@ const Profile = () => {
             </div>
             <div className="bodyProfile">
                 <div className="mainPage">
-                    <CreatePost />
-                    {PostData.map((post) => (
-                        <Posts key={post.id} post={post} />
-                    ))}
+                    <Feed username="havanduoc" />
                 </div>
                 <div className="subPage">
                     <div className="wrapperItem achievementProfile">

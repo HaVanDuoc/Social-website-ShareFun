@@ -3,21 +3,18 @@ import "./Feed.scss";
 import { CreatePost, Posts, UpToTop } from "../";
 import axios from "axios";
 
-// Data
-import { PostData } from "./Data.js";
-
-const Feed = () => {
+const Feed = ({ username }) => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const res = await axios.get(
-                "posts/timeline/62e63d76aad5c221f58f7f56"
-            );
+            const res = username
+                ? await axios.get("/profile/" + username)
+                : await axios.get("posts/timeline/62e63d76aad5c221f58f7f56");
             setPosts(res.data);
         };
         fetchPosts();
-    }, []);
+    }, [username]);
 
     return (
         <div className="hvdFeed">
