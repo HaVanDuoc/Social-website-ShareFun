@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.scss";
 
 import { Feed } from "../../components/";
+import axios from "axios";
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const res = await axios.get(`/users?username=havanduoc`);
+            setUser(res.data);
+        };
+        fetchUser();
+    }, []);
 
     return (
         <div className="hvdProfile">
@@ -16,8 +27,10 @@ const Profile = () => {
                     <div className="avatarImage">
                         <img src={PF + "/images/avatar/avt.jpg"} alt="" />
                     </div>
-                    <div className="userName">Hà Văn Được</div>
-                    <div className="signature">Hello! I'm Duoc.</div>
+                    <div className="userName">
+                        {user.firstname + " " + user.lastname}
+                    </div>
+                    <div className="signature">{user.signature}</div>
                 </div>
                 <div className="activityStatistics">
                     <div className="wrapperItem">

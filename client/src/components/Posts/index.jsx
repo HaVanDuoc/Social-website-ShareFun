@@ -20,11 +20,11 @@ const Posts = ({ post }) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`users?username=havanduoc`);
+            const res = await axios.get(`/users?userId=${post.userId}`);
             setUser(res.data);
         };
         fetchUser();
-    }, []);
+    }, [post.userId]);
 
     console.log(user);
 

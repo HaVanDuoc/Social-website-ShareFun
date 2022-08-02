@@ -3,21 +3,16 @@ const router = express.Router();
 const User = require("../models/Users");
 const bcrypt = require("bcrypt");
 
-// http://localhost:1810/server/users/
-router.get("/", async (req, res) => {
-    res.send("routes users");
-});
-
 // get a user
 router.get("/", async (req, res) => {
     const userId = req.query.userId;
     const username = req.query.username;
     try {
         const user = userId
-            ? await User.findById(req.params.id)
+            ? await User.findById(userId)
             : await User.findOne({ username: username });
         const { password, updateAt, ...other } = user._doc;
-        res.status(200).json(user);
+        res.status(200).json(other);
     } catch (error) {
         res.status(500).json(error);
     }

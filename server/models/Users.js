@@ -34,6 +34,10 @@ const UserSchema = new Schema(
             min: 2,
             max: 50,
         },
+        signature: {
+            type: String,
+            max: 50,
+        },
         profilePicture: {
             type: String,
             default: "",
@@ -53,10 +57,6 @@ const UserSchema = new Schema(
         isAdmin: {
             type: Boolean,
             default: false,
-        },
-        desc: {
-            type: String,
-            max: 50,
         },
         city: {
             type: String,
