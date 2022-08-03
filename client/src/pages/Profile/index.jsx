@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.scss";
+import { useParams } from "react-router";
 
 import { Feed } from "../../components/";
 import axios from "axios";
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
     const [user, setUser] = useState({});
+    const username = useParams().username;
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?username=havanduoc`);
+            const res = await axios.get(`/users?username=${username}`);
             setUser(res.data);
         };
         fetchUser();
-    }, []);
+    }, [username]);
 
     return (
         <div className="hvdProfile">
@@ -59,7 +60,7 @@ const Profile = () => {
             </div>
             <div className="bodyProfile">
                 <div className="mainPage">
-                    <Feed username="havanduoc" />
+                    <Feed username={username} />
                 </div>
                 <div className="subPage">
                     <div className="wrapperItem achievementProfile">
