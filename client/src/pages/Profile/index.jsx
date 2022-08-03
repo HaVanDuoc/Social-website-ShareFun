@@ -21,11 +21,17 @@ const Profile = () => {
         <div className="hvdProfile">
             <div className="headerProfile">
                 <div className="coverImage">
-                    <img src={`${PF}images/profile/coverPicture.jpg`} alt="" />
+                    <img src={PF + user.coverPicture} alt="" />
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
-                        <img src={PF + "/images/avatar/avt.jpg"} alt="" />
+                        <img
+                            src={
+                                PF + user.avatar ||
+                                PF + "images/avatar/noAvatar.png"
+                            }
+                            alt="avatar"
+                        />
                     </div>
                     <div className="userName">
                         {user.firstname + " " + user.lastname}

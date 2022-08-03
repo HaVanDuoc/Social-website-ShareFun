@@ -38,7 +38,7 @@ const UserSchema = new Schema(
             type: String,
             max: 50,
         },
-        profilePicture: {
+        avatar: {
             type: String,
             default: "",
         },
@@ -57,18 +57,6 @@ const UserSchema = new Schema(
         isAdmin: {
             type: Boolean,
             default: false,
-        },
-        city: {
-            type: String,
-            max: 50,
-        },
-        from: {
-            type: String,
-            max: 50,
-        },
-        relationship: {
-            type: Number,
-            enum: [1, 2, 3],
         },
     },
     { timestamps: true }

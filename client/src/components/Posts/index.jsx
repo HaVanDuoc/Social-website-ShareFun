@@ -44,7 +44,7 @@ const Posts = ({ post }) => {
                             <Link to={"profile/" + user.username}>
                                 <Avatar
                                     src={
-                                        user.profilePicture ||
+                                        user.avatar ||
                                         "images/avatar/noAvatar.png"
                                     }
                                 />
@@ -59,7 +59,7 @@ const Posts = ({ post }) => {
                                     {user.firstname + " " + user.lastname}
                                 </div>
                                 <div className="post__date">
-                                    {format(post.createdAt)}
+                                    {format(post.createdAt, "vi_VN")}
                                 </div>
                             </div>
                         </div>

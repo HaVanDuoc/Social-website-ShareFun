@@ -5,6 +5,15 @@
 
 .hvdProfile {
 
+    .hvdFeed {
+        padding-top: 0;
+        padding-bottom: 25px;
+
+        .feedWrapper {
+            width: 100%;
+        }
+    }
+
     .headerProfile {
         position: relative;
         background-color: #fff;
