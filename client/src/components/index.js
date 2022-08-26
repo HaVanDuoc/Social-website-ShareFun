@@ -7,5 +7,4 @@ export { default as Avatar } from "./Avatar";
 export { default as CreatePost } from "./CreatePost";
 export { default as Posts } from "./Posts";
 export { default as Panel } from "./Panel";
-export { default as FormLogin } from "./FormLogin";
 export { default as UpToTop } from "./UpToTop";
