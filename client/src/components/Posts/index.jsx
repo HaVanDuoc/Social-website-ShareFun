@@ -6,7 +6,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ReplyIcon from "@mui/icons-material/Reply";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import axios from "axios";
-// import { format } from "timeago.js";
+import { format } from 'timeago.js';
 import { Link } from "react-router-dom";
 
 const Posts = ({ post }) => {
@@ -26,7 +26,9 @@ const Posts = ({ post }) => {
         fetchUser();
     }, [post.userId]);
 
-    console.log(user);
+    useEffect(() => {
+        console.log(user);
+    }, [user])
 
     const handleFavourite = () => {
         setCountFavourite(
@@ -59,8 +61,7 @@ const Posts = ({ post }) => {
                                     {user.firstname + " " + user.lastname}
                                 </div>
                                 <div className="post__date">
-                                    {/* {format(post.createdAt, "vi_VN")} */}
-                                    {post.createdAt}
+                                    {format(post.createdAt)}
                                 </div>
                             </div>
                         </div>

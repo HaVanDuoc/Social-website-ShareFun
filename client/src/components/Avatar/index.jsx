@@ -7,11 +7,11 @@ const Avatar = (props) => {
     const { src, children, ...otherProps } = props;
 
     return (
-            <div className="hvdAvatar" style={{ ...otherProps }}>
-                <div className="avatarWrapper">
-                    <img src={PF + src} alt="avatar" />
-                </div>
+        <div className="hvdAvatar" style={{ ...otherProps }}>
+            <div className="avatarWrapper">
+                <img src={PF + src} alt="avatar" />
             </div>
+        </div>
     );
 };
 
