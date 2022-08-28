@@ -58,6 +58,10 @@ const UserSchema = new Schema(
             type: Boolean,
             default: false,
         },
+        dayActive: {
+            type: Number,
+            default: 0,
+        }
     },
     { timestamps: true }
 );

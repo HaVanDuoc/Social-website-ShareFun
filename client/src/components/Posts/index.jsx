@@ -26,10 +26,6 @@ const Posts = ({ post }) => {
         fetchUser();
     }, [post.userId]);
 
-    useEffect(() => {
-        console.log(user);
-    }, [user])
-
     const handleFavourite = () => {
         setCountFavourite(
             isFavourite ? countfavourite - 1 : countfavourite + 1
