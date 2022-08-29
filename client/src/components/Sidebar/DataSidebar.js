@@ -99,31 +99,8 @@ export const DataSidebar = {
             icon: <EventIcon />,
             name: "Sự kiện",
         },
-        {
-            id: 16,
-            path: "#",
-            icon: <EventIcon />,
-            name: "Sự kiện",
-        },
-        {
-            id: 17,
-            path: "#",
-            icon: <EventIcon />,
-            name: "Sự kiện",
-        },
-        {
-            id: 18,
-            path: "#",
-            icon: <EventIcon />,
-            name: "Sự kiện",
-        },
-        {
-            id: 19,
-            path: "#",
-            icon: <EventIcon />,
-            name: "Sự kiện",
-        },
     ],
+    
     FooterLinks: [
         { path: "#", nane: "Quyền riêng tư" },
         { path: "#", nane: "Điều khoản" },

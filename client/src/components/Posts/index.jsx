@@ -39,14 +39,12 @@ const Posts = ({ post }) => {
                 <div id="post">
                     <div className="post__header">
                         <div className="post__poster">
-                            <Link to={"profile/" + user.username}>
-                                <Avatar
-                                    src={
-                                        user.avatar ||
-                                        "images/avatar/noAvatar.png"
-                                    }
-                                />
-                            </Link>
+                            <Avatar
+                                src={
+                                    user.avatar ||
+                                    "images/avatar/noAvatar.png"
+                                }
+                            />
                             <div
                                 style={{
                                     display: "flex",
