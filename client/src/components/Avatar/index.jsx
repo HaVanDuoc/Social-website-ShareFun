@@ -1,17 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Avatar.scss";
-
 
 const Avatar = (props) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { src, children, ...otherProps } = props;
 
     return (
-        <div className="hvdAvatar" style={{ ...otherProps }}>
-            <div className="avatarWrapper">
-                <img src={PF + src} alt="avatar" />
+        <Link to="/profile/havanduoc">
+            <div className="hvdAvatar" style={{ ...otherProps }}>
+                <div className="avatarWrapper">
+                    <img src={PF + src} alt="avatar" />
+                </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
