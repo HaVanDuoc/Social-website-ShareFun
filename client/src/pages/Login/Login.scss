@@ -29,7 +29,8 @@
         }
     }
 
-    .formLogin {
+    .formLogin,
+    .formRegister {
         position: relative;
         display: flex;
         justify-content: center;
@@ -102,6 +103,18 @@
 
             &:hover {
                 background-color: #07b007;
+            }
+        }
+    }
+
+    .formRegister {
+        .loginLink {
+            font-size: 16px;
+            padding: 5px;
+            color: #07b007;
+            &:hover {
+                text-decoration: underline;
+                cursor: pointer;
             }
         }
     }
