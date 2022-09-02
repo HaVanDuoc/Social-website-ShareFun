@@ -10,7 +10,7 @@ const Feed = ({ username }) => {
         const fetchPosts = async () => {
             const res = username
                 ? await axios.get("/posts/profile/" + username)
-                : await axios.get("posts/timeline/6309be9011d459c2775a7501");
+                : await axios.get("/posts/timeline/6309be9011d459c2775a7501");
             setPosts(res.data);
         };
         fetchPosts();
