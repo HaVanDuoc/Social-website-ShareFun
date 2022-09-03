@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
 import "./Topbar.scss";
 
-// Components
-// import { Avatar } from "../../components";
-
 // Tippy Library
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
@@ -27,10 +24,10 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
 import { useContext } from "react";
 
 import AuthContext from '../../store/AuthContext'
+import { LoginModal } from "../ModalAuth";
 
 const TopBarRightItems = [
     {
@@ -54,8 +51,9 @@ const AccountUser = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleClick = () => {
+        // setAnchorEl(event.currentTarget);
+        return <LoginModal />
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -163,48 +161,6 @@ const AccountUser = () => {
                             </IconButton>
                         </Tooltip>
                     </Box>
-                    <Menu
-                        anchorEl={anchorEl}
-                        id="account-menu"
-                        open={open}
-                        onClose={handleClose}
-                        onClick={handleClose}
-                        PaperProps={{
-                            elevation: 0,
-                            sx: {
-                                overflow: 'visible',
-                                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                                mt: 1.5,
-                                '& .MuiAvatar-root': {
-                                    width: 32,
-                                    height: 32,
-                                    ml: -0.5,
-                                    mr: 1,
-                                },
-                                '&:before': {
-                                    content: '""',
-                                    display: 'block',
-                                    position: 'absolute',
-                                    top: 0,
-                                    right: 14,
-                                    width: 10,
-                                    height: 10,
-                                    bgcolor: 'background.paper',
-                                    transform: 'translateY(-50%) rotate(45deg)',
-                                    zIndex: 0,
-                                },
-                            },
-                        }}
-                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                    >
-                        <MenuItem>
-                            <ListItemIcon>
-                                <LoginIcon fontSize="small" />
-                            </ListItemIcon>
-                            Đăng nhập
-                        </MenuItem>
-                    </Menu>
                 </Fragment>
             )}
         </Fragment>

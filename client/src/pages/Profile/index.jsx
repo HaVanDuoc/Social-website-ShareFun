@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 
 import { Feed } from "../../components/";
 import axios from "axios";
+import { Avatar } from "@mui/material";
 
 
 const Profile = () => {
@@ -28,9 +29,9 @@ const Profile = () => {
         fetchPost();
     }, [username]);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("user", user)
-    },[user])
+    }, [user])
 
     const HeaderProfile = () => {
         return (
@@ -40,13 +41,7 @@ const Profile = () => {
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
-                        <img
-                            src={
-                                PF + user.avatar ||
-                                PF + "images/avatar/noAvatar.png"
-                            }
-                            alt="avatar"
-                        />
+                        <Avatar src={PF + user.avatar} alt={user.username} sx={{ width: "100%", height: "100%" }} />
                     </div>
                     <div className="userName">
                         {user.firstname + " " + user.lastname}
@@ -59,7 +54,7 @@ const Profile = () => {
                         <span>Bài viết</span>
                     </div>
                     <div className="wrapperItem">
-                        <span>{0}</span>
+                        <span>{}</span>
                         <span>Theo dõi</span>
                     </div>
                     <div className="wrapperItem">

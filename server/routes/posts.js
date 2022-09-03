@@ -72,6 +72,18 @@ router.put("/:id/like", async (req, res) => {
     }
 });
 
+// get timeline post random
+router.get("/timeline", async (req, res) => {
+    try {
+        const posts = await Post.find((post)=>{
+            return post._id
+        })
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 // get timeline post
 router.get("/timeline/:userId", async (req, res) => {
     try {
