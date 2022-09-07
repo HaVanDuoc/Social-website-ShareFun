@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.3",
+    "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -53,5 +54,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:1810/server"
+  "proxy": "http://localhost:1810/server",
+  "devDependencies": {
+    "@redux-devtools/core": "^3.13.1"
+  }
 }

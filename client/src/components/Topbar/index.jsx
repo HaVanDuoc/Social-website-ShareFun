@@ -1,18 +1,12 @@
 import React, { Fragment } from "react";
 import "./Topbar.scss";
-
-// Tippy Library
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
-
-// Icons
 import SearchIcon from "@mui/icons-material/Search";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { Link } from "react-router-dom";
-
-// Material
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -24,10 +18,8 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { useContext } from "react";
-
-import AuthContext from '../../store/AuthContext'
 import { LoginModal } from "../ModalAuth";
+import { useSelector } from 'react-redux';
 
 const TopBarRightItems = [
     {
@@ -59,9 +51,8 @@ const AccountUser = () => {
         setAnchorEl(null);
     };
 
-    const [state] = useContext(AuthContext)
-    const { user } = state
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
+    const user = useSelector(state => state.AuthReducer)
 
     return (
         <Fragment>

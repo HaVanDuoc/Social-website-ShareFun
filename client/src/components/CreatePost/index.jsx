@@ -1,17 +1,14 @@
 import React from "react";
 import "./CreatePost.scss";
-
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 import PhotoIcon from "@mui/icons-material/Photo";
 import MoodIcon from "@mui/icons-material/Mood";
 import { Avatar, Box } from "@mui/material";
-import { useContext } from "react";
-import AuthContext from "../../store/AuthContext";
+import { useSelector } from "react-redux";
 
 const CreatePost = () => {
-    const [state] = useContext(AuthContext)
-    const { user } = state
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
+    const user = useSelector(state => state.AuthReducer)
 
     return (
         <div className="hvdCreatePost">
