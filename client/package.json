@@ -54,7 +54,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:1810/server",
+  "proxy": "https://social-website-havanduoc.herokuapp.com/server/",
   "devDependencies": {
     "@redux-devtools/core": "^3.13.1"
   }
