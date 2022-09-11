@@ -26,5 +26,5 @@ app.use("/server/auth", authRoute);
 app.use("/server/posts", postRoute);
 
 app.listen(PORT, () => {
-    console.log("Server is running!");
+    console.log(`Server is listening on port ${PORT}...`);
 });
