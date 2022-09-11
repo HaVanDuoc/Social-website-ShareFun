@@ -29,10 +29,6 @@ const Profile = () => {
         fetchPost();
     }, [username]);
 
-    useEffect(() => {
-        console.log("user", user)
-    }, [user])
-
     const HeaderProfile = () => {
         return (
             <div className="headerProfile">
@@ -54,7 +50,7 @@ const Profile = () => {
                         <span>Bài viết</span>
                     </div>
                     <div className="wrapperItem">
-                        <span>{}</span>
+                        <span>{null || 0}</span>
                         <span>Theo dõi</span>
                     </div>
                     <div className="wrapperItem">
