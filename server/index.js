@@ -8,13 +8,11 @@ const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 
-dotenv.config();
-
 const PORT = process.env.PORT || 1810;
 
-mongoose.connect(process.env.MONGODB_URL, () => {
-    console.log("Connected to MongoDB!");
-});
+dotenv.config();
+
+mongoose.connect(process.env.MONGODB_URL);
 
 // middleware
 app.use(express.json());
@@ -26,5 +24,5 @@ app.use("/server/auth", authRoute);
 app.use("/server/posts", postRoute);
 
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}...`);
+    console.log(`Server is listening on port ${PORT}`);
 });
