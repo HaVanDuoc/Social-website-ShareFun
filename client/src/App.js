@@ -1,8 +1,14 @@
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ModalLogin from './components/Modal/LoginModal';
 import { DefaultLayout } from './Layouts/';
+import { selectedModalLogin } from './redux/reducers/ModalReducer';
 import { publicRoutes } from './routes';
 
 function App() {
+
+    const isModal = useSelector(selectedModalLogin)
+
     return (
         <div className="__havanduoc">
             <BrowserRouter>
@@ -19,6 +25,7 @@ function App() {
                                 element={
                                     <Layout>
                                         <Page />
+                                        {isModal && <ModalLogin />}
                                     </Layout>
                                 }
                             />

@@ -10,18 +10,22 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { connect, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectedUser } from '../../redux/reducers/AuthReducer'
+import { OpenModalLogin } from "../../redux/actions/ModalAction";
 
 const AccountUser = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    const user = useSelector(state => state.AuthReducer)
+    const user = useSelector(selectedUser)
 
-    console.log(user)
+    const dispatch = useDispatch()
 
-    const handleClick = () => {
-        user === null || mapStateToProps(true)
+    const handleClick = (e) => {
+        e.preventDefault()
+
+        dispatch(OpenModalLogin())
     };
 
     const handleClose = () => {
@@ -132,10 +136,4 @@ const AccountUser = () => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isOpen: state,
-    }
-}
-
-export default connect(mapStateToProps)(AccountUser)
+export default AccountUser
