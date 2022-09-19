@@ -6,8 +6,7 @@ import { selectedModalLogin } from '../../redux/reducers/ModalReducer';
 import { CloseModalLogin } from '../../redux/actions/ModalAction';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import Login from '../Login/imdex';
-import Register from '../Register/imdex';
+import SignInOutContainer from '../../containers/SignInOutContainer';
 
 export default function ModalLogin() {
     const isModal = useSelector(selectedModalLogin);
@@ -36,8 +35,7 @@ export default function ModalLogin() {
                             <CloseIcon />
                         </IconButton>
                     </Box>
-                    {/* <Login /> */}
-                    <Register />
+                    <SignInOutContainer />
                 </Box>
             </Box>
         </Modal>

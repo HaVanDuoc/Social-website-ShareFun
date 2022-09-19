@@ -1,7 +1,18 @@
 import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectedSignInOut } from '../../redux/reducers/SignInOutReducer';
+import { FormRegister as FormRegisterAction } from '../../redux/actions/SignInOutAction.js';
 
-function Login() {
+function FormLogin() {
+    const dispatch = useDispatch();
+    const form = useSelector(selectedSignInOut);
+
+    const handleSignUpNow = () => {
+        dispatch(FormRegisterAction());
+        console.log(form);
+    };
+
     return (
         <React.Fragment>
             <Box component="form">
@@ -26,7 +37,7 @@ function Login() {
                 <Link href="#" underline="none" onClick={(e) => e.preventDefault()}>
                     Gặp khó khăn
                 </Link>
-                <Link href="#" underline="none" onClick={(e) => e.preventDefault()}>
+                <Link href="#" underline="none" onClick={handleSignUpNow}>
                     Đăng ký ngay
                 </Link>
             </Box>
@@ -34,4 +45,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default FormLogin;

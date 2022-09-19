@@ -1,8 +1,12 @@
 import { Box, Button, Checkbox, FormControlLabel, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useDispatch } from 'react-redux';
+import { FormLogin } from '../../redux/actions/SignInOutAction';
 
-function Register() {
+function FormRegister() {
+    const dispatch = useDispatch();
+
     return (
         <React.Fragment>
             <Box component="form">
@@ -43,6 +47,7 @@ function Register() {
                 <Box align="center" marginTop="30px">
                     <Button
                         fontSize="18px"
+                        onClick={() => dispatch(FormLogin())}
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
@@ -58,4 +63,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default FormRegister;
