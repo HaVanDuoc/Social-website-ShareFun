@@ -68,7 +68,7 @@ function FormLogin() {
                                 disabled={props.isSubmitting}
                                 sx={{ margin: '10px 0' }}
                             >
-                                Đăng nhập
+                                {props.isSubmitting ? 'Đang tải...' : 'Đăng nhập'}
                             </Field>
                         </Form>
                     )}
