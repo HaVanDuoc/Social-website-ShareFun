@@ -30,7 +30,14 @@ function FormLogin() {
 
     return (
         <React.Fragment>
-            <Box>
+            <Box
+                sx={{
+                    '.MuiFormHelperText-root': {
+                        color: 'red',
+                        fontSize: 15,
+                    },
+                }}
+            >
                 <Box textAlign="center" margin="10px 0">
                     <Typography fontSize="25px" sx={{ pointerEvents: 'none' }}>
                         Đăng nhập
