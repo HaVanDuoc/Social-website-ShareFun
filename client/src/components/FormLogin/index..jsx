@@ -1,31 +1,64 @@
 import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectedSignInOut } from '../../redux/reducers/SignInOutReducer';
+import { useDispatch } from 'react-redux';
 import { FormRegister as FormRegisterAction } from '../../redux/actions/SignInOutAction.js';
+import { Field, Form, Formik } from 'formik';
 
 function FormLogin() {
     const dispatch = useDispatch();
-    const form = useSelector(selectedSignInOut);
+    const initialValues = {
+        username: '',
+        password: '',
+    };
 
     const handleSignUpNow = () => {
         dispatch(FormRegisterAction());
-        console.log(form);
+    };
+
+    const onSubmit = (values, props) => {
+        console.log(values);
     };
 
     return (
         <React.Fragment>
-            <Box component="form">
+            <Box>
                 <Box textAlign="center" margin="10px 0">
                     <Typography fontSize="25px" sx={{ pointerEvents: 'none' }}>
                         Đăng nhập
                     </Typography>
                 </Box>
-                <TextField label="Tên đăng nhập/Email" type="text" fullWidth sx={{ margin: '10px 0' }} />
-                <TextField label="Mật khẩu" type="password" fullWidth sx={{ margin: '10px 0' }} />
-                <Button type="submit" variant="contained" fullWidth size="large" sx={{ margin: '10px 0' }}>
-                    Đăng nhập
-                </Button>
+                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                    {(props) => (
+                        <Form>
+                            <Field
+                                as={TextField}
+                                label="Tên đăng nhập/Email"
+                                name="username"
+                                type="text"
+                                fullWidth
+                                sx={{ margin: '10px 0' }}
+                            />
+                            <Field
+                                as={TextField}
+                                label="Mật khẩu"
+                                name="password"
+                                type="password"
+                                fullWidth
+                                sx={{ margin: '10px 0' }}
+                            />
+                            <Field
+                                as={Button}
+                                type="submit"
+                                variant="contained"
+                                fullWidth
+                                size="large"
+                                sx={{ margin: '10px 0' }}
+                            >
+                                Đăng nhập
+                            </Field>
+                        </Form>
+                    )}
+                </Formik>
             </Box>
             <Box
                 sx={{
