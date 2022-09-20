@@ -14,6 +14,7 @@
     "@tippyjs/react": "^4.2.6",
     "axios": "^0.27.2",
     "customize-cra": "^1.0.0",
+    "formik": "^2.2.9",
     "jquery": "^3.6.0",
     "normalize.css": "^8.0.1",
     "owl.carousel": "^2.3.4",
@@ -28,7 +29,8 @@
     "redux": "^4.2.0",
     "sass": "^1.53.0",
     "timeago.js": "^4.0.0-beta.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-app-rewired start",
