@@ -2,13 +2,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedModalLogin } from '../../redux/reducers/ModalReducer';
-import { CloseModalLogin } from '../../redux/actions/ModalAction';
+import { selectedModalLogin } from '../redux/reducers/ModalReducer';
+import { CloseModalLogin } from '../redux/actions/ModalAction';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import SignInOutContainer from '../../containers/SignInOutContainer';
+import SignInOutContainer from './SignInOutContainer';
 
-export default function ModalLogin() {
+export default function ModalLoginContainer() {
     const isModal = useSelector(selectedModalLogin);
     const dispatch = useDispatch();
     const handleClose = () => dispatch(CloseModalLogin());

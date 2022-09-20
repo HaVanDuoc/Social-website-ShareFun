@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -11,21 +11,23 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedUser } from '../../redux/reducers/AuthReducer'
-import { OpenModalLogin } from "../../redux/actions/ModalAction";
+import { selectedUser } from '../../redux/reducers/AuthReducer';
+import { OpenModalLogin } from '../../redux/actions/ModalAction';
 
 const AccountUser = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    const user = useSelector(selectedUser)
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const user = useSelector(selectedUser);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleClick = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        dispatch(OpenModalLogin())
+        if (user === null) {
+            dispatch(OpenModalLogin());
+        }
     };
 
     const handleClose = () => {
@@ -126,14 +128,14 @@ const AccountUser = () => {
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                             >
-                                <Avatar sx={{ width: 40, height: 40 }} alt="avatar" src={PF + "images/noUser.png"} />
+                                <Avatar sx={{ width: 40, height: 40 }} alt="avatar" src={PF + 'images/noUser.png'} />
                             </IconButton>
                         </Tooltip>
                     </Box>
                 </Fragment>
             )}
         </Fragment>
-    )
-}
+    );
+};
 
-export default AccountUser
+export default AccountUser;

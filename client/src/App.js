@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ModalLogin from './components/Modal/LoginModal';
+import ModalLoginContainer from './containers/LoginModalContainer';
 import { DefaultLayout } from './Layouts/';
 import { selectedModalLogin } from './redux/reducers/ModalReducer';
 import { publicRoutes } from './routes';
@@ -25,7 +25,7 @@ function App() {
                                 element={
                                     <Layout>
                                         <Page />
-                                        {isModal && <ModalLogin />}
+                                        {isModal && <ModalLoginContainer />}
                                     </Layout>
                                 }
                             />
