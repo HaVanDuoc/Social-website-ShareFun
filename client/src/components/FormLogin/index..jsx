@@ -19,7 +19,7 @@ function FormLogin() {
     const onSubmit = (values, props) => {
         setTimeout(() => {
             props.resetForm();
-            props.setSubmitting();
+            props.setSubmitting(false);
         }, 2000);
     };
 
@@ -65,6 +65,7 @@ function FormLogin() {
                                 variant="contained"
                                 fullWidth
                                 size="large"
+                                disabled={props.isSubmitting}
                                 sx={{ margin: '10px 0' }}
                             >
                                 Đăng nhập
