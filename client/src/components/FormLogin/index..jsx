@@ -2,7 +2,8 @@ import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { FormRegister as FormRegisterAction } from '../../redux/actions/SignInOutAction.js';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
 
 function FormLogin() {
     const dispatch = useDispatch();
@@ -16,8 +17,13 @@ function FormLogin() {
     };
 
     const onSubmit = (values, props) => {
-        console.log(values);
+        console.log(props);
     };
+
+    const validationSchema = Yup.object().shape({
+        username: Yup.string().email('*Định dạng email sai').required('*Không được để trống email'),
+        password: Yup.string().required('*Mật khẩu không được để trống'),
+    });
 
     return (
         <React.Fragment>
@@ -27,7 +33,7 @@ function FormLogin() {
                         Đăng nhập
                     </Typography>
                 </Box>
-                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                     {(props) => (
                         <Form>
                             <Field
@@ -36,6 +42,8 @@ function FormLogin() {
                                 name="username"
                                 type="text"
                                 fullWidth
+                                required
+                                helperText={<ErrorMessage name="username" />}
                                 sx={{ margin: '10px 0' }}
                             />
                             <Field
@@ -44,6 +52,8 @@ function FormLogin() {
                                 name="password"
                                 type="password"
                                 fullWidth
+                                required
+                                helperText={<ErrorMessage name="password" />}
                                 sx={{ margin: '10px 0' }}
                             />
                             <Field
