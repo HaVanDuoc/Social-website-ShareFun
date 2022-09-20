@@ -18,6 +18,7 @@ function FormLogin() {
 
     const onSubmit = (values, props) => {
         console.log(props);
+        props.resetForm();
     };
 
     const validationSchema = Yup.object().shape({
