@@ -10,24 +10,38 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectedUser } from '../../redux/reducers/AuthReducer';
+import { useDispatch } from 'react-redux';
 import { OpenModalLogin } from '../../redux/actions/ModalAction';
+import { FormLogin } from '../../redux/actions/SignInOutAction';
 
 const AccountUser = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const user = useSelector(selectedUser);
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
 
     const dispatch = useDispatch();
 
-    const handleClick = (e) => {
+    const handleClickLoggedIn = (e) => {
+        e.preventDefault();
+        
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleClickNoLoggedIn = (e) => {
         e.preventDefault();
 
-        if (user === null) {
+        if (isLoggedIn === null) {
+            dispatch(FormLogin());
             dispatch(OpenModalLogin());
         }
+    };
+
+    const handleClickLogOut = (e) => {
+        e.preventDefault();
+
+        localStorage.removeItem('user');
+        localStorage.removeItem('isLoggedIn');
     };
 
     const handleClose = () => {
@@ -36,13 +50,13 @@ const AccountUser = () => {
 
     return (
         <Fragment>
-            {user ? (
+            {isLoggedIn ? (
                 // Logged
                 <Fragment>
                     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                         <Tooltip title="Đăng nhập">
                             <IconButton
-                                onClick={handleClick}
+                                onClick={handleClickLoggedIn}
                                 size="small"
                                 sx={{ ml: 2 }}
                                 aria-controls={open ? 'account-menu' : undefined}
@@ -107,7 +121,7 @@ const AccountUser = () => {
                             </ListItemIcon>
                             Settings
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={handleClickLogOut}>
                             <ListItemIcon>
                                 <Logout fontSize="small" />
                             </ListItemIcon>
@@ -121,7 +135,7 @@ const AccountUser = () => {
                     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                         <Tooltip title="Đăng nhập">
                             <IconButton
-                                onClick={handleClick}
+                                onClick={handleClickNoLoggedIn}
                                 size="small"
                                 sx={{ ml: 2 }}
                                 aria-controls={open ? 'account-menu' : undefined}
