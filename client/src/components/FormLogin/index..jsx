@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { FormRegister as FormRegisterAction } from '../../redux/actions/SignInOutAction.js';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import LoginCall from '../../store/CallApi.js';
+import { CloseModalLogin } from '../../redux/actions/ModalAction.js';
 
 function FormLogin() {
     const dispatch = useDispatch();
@@ -16,17 +18,19 @@ function FormLogin() {
         dispatch(FormRegisterAction());
     };
 
-    const onSubmit = (values, props) => {
-        setTimeout(() => {
-            props.resetForm();
-            props.setSubmitting(false);
-        }, 2000);
-    };
-
     const validationSchema = Yup.object().shape({
         username: Yup.string().email('*Định dạng email sai').required('*Không được để trống email'),
         password: Yup.string().required('*Mật khẩu không được để trống'),
     });
+
+    const onSubmit = (values, props) => {
+        setTimeout(() => {
+            LoginCall({ email: values.username, password: values.password }, dispatch);
+            props.resetForm();
+            props.setSubmitting(false);
+            dispatch(CloseModalLogin());
+        }, 2000);
+    };
 
     return (
         <React.Fragment>

@@ -7,6 +7,7 @@ import { Avatar, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedUser } from '../../redux/reducers/AuthReducer';
 import { OpenModalLogin } from '../../redux/actions/ModalAction';
+import { FormLogin } from '../../redux/actions/SignInOutAction';
 
 const CreatePost = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -17,6 +18,7 @@ const CreatePost = () => {
         e.preventDefault();
 
         if (user === null) {
+            dispatch(FormLogin());
             dispatch(OpenModalLogin());
         }
     };
