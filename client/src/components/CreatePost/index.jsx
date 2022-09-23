@@ -35,7 +35,10 @@ const CreatePost = () => {
                         onClick={handleClick}
                         sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', cursor: 'pointer' }}
                     >
-                        <Avatar src={user ? user.avatar : `${PF}images/noUser.png`} sx={{ width: 40, height: 40 }} />
+                        <Avatar
+                            src={user ? PF + user.avatar : PF + 'images/noUser.png'}
+                            sx={{ width: 40, height: 40 }}
+                        ></Avatar>
                     </Box>
                     <input type="text" placeholder="Bạn đang nghĩ gì thế?" onClick={handleClick} />
                 </div>

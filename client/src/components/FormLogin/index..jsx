@@ -6,8 +6,10 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import LoginCall from '../../store/CallApi.js';
 import { CloseModalLogin } from '../../redux/actions/ModalAction.js';
+import { useState } from 'react';
 
 function FormLogin() {
+    const [state, setState] = useState();
     const dispatch = useDispatch();
     const initialValues = {
         username: '',
@@ -29,6 +31,7 @@ function FormLogin() {
             props.resetForm();
             props.setSubmitting(false);
             dispatch(CloseModalLogin());
+            setState();
         }, 2000);
     };
 
