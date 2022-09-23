@@ -4,20 +4,24 @@ import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import PhotoIcon from '@mui/icons-material/Photo';
 import MoodIcon from '@mui/icons-material/Mood';
 import { Avatar, Box } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectedUser } from '../../redux/reducers/AuthReducer';
+import { useDispatch } from 'react-redux';
 import { OpenModalLogin } from '../../redux/actions/ModalAction';
 import { FormLogin } from '../../redux/actions/SignInOutAction';
+import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
 
 const CreatePost = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const user = useSelector(selectedUser);
     const dispatch = useDispatch();
+
+    // fetch user logged
+    const user = useFetchLoggedInUser();
+
+    console.log(user);
 
     const handleClick = (e) => {
         e.preventDefault();
 
-        if (user === null) {
+        if (user === undefined) {
             dispatch(FormLogin());
             dispatch(OpenModalLogin());
         }
