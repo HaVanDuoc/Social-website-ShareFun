@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from "react";
-import "./Profile.scss";
-import { useParams } from "react-router";
-
-import { Feed } from "../../components/";
-import axios from "axios";
-import { Avatar } from "@mui/material";
-
+import React from 'react';
+import './Profile.scss';
+import { useParams } from 'react-router';
+import { Feed } from '../../components/';
+import { Avatar } from '@mui/material';
+import useFetchUser from '../../hooks/useFetchUser';
+import useFetchPost from '../../hooks/useFetchPost';
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const [user, setUser] = useState({});
-    const [posts, setPosts] = useState([])
     const username = useParams().username;
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const res = await axios.get(`/users?username=${username}`);
-            setUser(res.data);
-        };
-        fetchUser();
-    }, [username]);
-
-    useEffect(() => {
-        const fetchPost = async () => {
-            const res = await axios.get(`/posts/profile/${username}`)
-            setPosts(res.data)
-        }
-        fetchPost();
-    }, [username]);
+    const user = useFetchUser();
+    const posts = useFetchPost();
 
     const HeaderProfile = () => {
         return (
@@ -37,11 +20,9 @@ const Profile = () => {
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
-                        <Avatar src={PF + user.avatar} alt={user.username} sx={{ width: "100%", height: "100%" }} />
+                        <Avatar src={PF + user.avatar} alt={user.username} sx={{ width: '100%', height: '100%' }} />
                     </div>
-                    <div className="userName">
-                        {user.firstname + " " + user.lastname}
-                    </div>
+                    <div className="userName">{user.firstname + ' ' + user.lastname}</div>
                     <div className="signature">{user.signature}</div>
                 </div>
                 <div className="activityStatistics">
@@ -50,8 +31,9 @@ const Profile = () => {
                         <span>Bài viết</span>
                     </div>
                     <div className="wrapperItem">
+                        {/* {console.log(user.follower.length)} */}
                         <span>{null || 0}</span>
-                        <span>Theo dõi</span>
+                        <span>Đang theo dõi</span>
                     </div>
                     <div className="wrapperItem">
                         <span>{0}</span>
@@ -63,13 +45,13 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     const AchievementProfile = () => {
         return (
             <div className="wrapperItem achievementProfile">
-                <div className="title">{user.firstname + " " + user.lastname}</div>
+                <div className="title">{user.firstname + ' ' + user.lastname}</div>
                 <div className="item">
                     <div className="name">Số ngày hoạt động</div>
                     <div className="value">614</div>
@@ -83,8 +65,8 @@ const Profile = () => {
                     <div className="value">625</div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     const IntroduceProfile = () => {
         return (
@@ -95,8 +77,8 @@ const Profile = () => {
                 <div className="item">Thêm sở thích</div>
                 <div className="item">Thêm nội dung đáng chú ý</div>
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <div className="hvdProfile">
