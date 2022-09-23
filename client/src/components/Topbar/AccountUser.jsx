@@ -10,28 +10,21 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { useDispatch } from 'react-redux';
-import { OpenModalLogin } from '../../redux/actions/ModalAction';
-import { FormLogin } from '../../redux/actions/SignInOutAction';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
+import { useDispatch } from 'react-redux';
+import { FormLogin } from '../../redux/actions/SignInOutAction';
+import { OpenModalLogin } from '../../redux/actions/ModalAction';
 
 const AccountUser = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const [user, setUser] = useState({});
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        const loggedInUser = localStorage.getItem('user');
-        if (loggedInUser) {
-            const foundUser = JSON.parse(loggedInUser);
-            setUser(foundUser);
-        }
-    }, []);
+    // fetch data user logged
+    const user = useFetchLoggedInUser();
 
+    // Logged
     const Logged = () => {
         const [anchorEl, setAnchorEl] = React.useState(null);
         const open = Boolean(anchorEl);
@@ -43,8 +36,7 @@ const AccountUser = () => {
 
         const handleClickLogOut = (e) => {
             e.preventDefault();
-            localStorage.removeItem('user');
-            localStorage.removeItem('isLoggedIn');
+            localStorage.clear();
         };
 
         const handleClose = () => {
@@ -135,10 +127,12 @@ const AccountUser = () => {
         );
     };
 
+    // No logged
     const NoLogged = () => {
         const handleClickNoLoggedIn = (e) => {
             e.preventDefault();
-            if (isLoggedIn === null) {
+
+            if (user === undefined) {
                 dispatch(FormLogin());
                 dispatch(OpenModalLogin());
             }
@@ -157,7 +151,7 @@ const AccountUser = () => {
         );
     };
 
-    return <Fragment>{isLoggedIn ? <Logged /> : <NoLogged />}</Fragment>;
+    return <Fragment>{user ? <Logged /> : <NoLogged />}</Fragment>;
 };
 
 export default AccountUser;
