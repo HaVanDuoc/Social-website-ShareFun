@@ -15,6 +15,7 @@ import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
 import { useDispatch } from 'react-redux';
 import { FormLogin } from '../../redux/actions/SignInOutAction';
 import { OpenModalLogin } from '../../redux/actions/ModalAction';
+import useCheckLogged from '../../hooks/useCheckLogged';
 
 const AccountUser = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -23,6 +24,7 @@ const AccountUser = () => {
 
     // fetch data user logged
     const user = useFetchLoggedInUser();
+    const isLogged = useCheckLogged();
 
     // Logged
     const Logged = () => {
@@ -61,7 +63,10 @@ const AccountUser = () => {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                         >
-                            <Avatar src={PF + user.avatar} sx={{ width: 40, height: 40 }}></Avatar>
+                            <Avatar
+                                src={isLogged ? PF + user.avatar : PF + 'images/noUser.png'}
+                                sx={{ width: 40, height: 40 }}
+                            ></Avatar>
                         </IconButton>
                     </Tooltip>
                 </Box>
@@ -132,7 +137,7 @@ const AccountUser = () => {
         const handleClickNoLoggedIn = (e) => {
             e.preventDefault();
 
-            if (user === undefined) {
+            if (!isLogged) {
                 dispatch(FormLogin());
                 dispatch(OpenModalLogin());
             }
@@ -151,7 +156,7 @@ const AccountUser = () => {
         );
     };
 
-    return <Fragment>{user ? <Logged /> : <NoLogged />}</Fragment>;
+    return <Fragment>{isLogged ? <Logged /> : <NoLogged />}</Fragment>;
 };
 
 export default AccountUser;
