@@ -1,6 +1,5 @@
 import React from 'react';
 import './Profile.scss';
-import { useParams } from 'react-router';
 import { Feed } from '../../components/';
 import { Avatar } from '@mui/material';
 import useFetchUser from '../../hooks/useFetchUser';
@@ -8,7 +7,6 @@ import useFetchPost from '../../hooks/useFetchPost';
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const username = useParams().username;
     const user = useFetchUser();
     const posts = useFetchPost();
 
@@ -27,16 +25,15 @@ const Profile = () => {
                 </div>
                 <div className="activityStatistics">
                     <div className="wrapperItem">
-                        <span>{posts.length || 0}</span>
+                        <span>{posts?.length || 0}</span>
                         <span>Bài viết</span>
                     </div>
                     <div className="wrapperItem">
-                        {/* {console.log(user.follower.length)} */}
-                        <span>{null || 0}</span>
+                        <span>{user?.followings?.length || 0}</span>
                         <span>Đang theo dõi</span>
                     </div>
                     <div className="wrapperItem">
-                        <span>{0}</span>
+                        <span>{user?.followers?.length || 0}</span>
                         <span>Người theo dõi</span>
                     </div>
                     <div className="wrapperItem">
@@ -85,7 +82,7 @@ const Profile = () => {
             <HeaderProfile />
             <div className="bodyProfile">
                 <div className="mainPage">
-                    <Feed username={username} />
+                    <Feed />
                 </div>
                 <div className="subPage">
                     <AchievementProfile />

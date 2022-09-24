@@ -7,11 +7,13 @@ const useFetchPost = () => {
     const username = useParams().username;
 
     useEffect(() => {
-        const fetchPost = async () => {
-            const res = await axios.get(`/posts/profile/${username}`)
-            setPosts(res.data)
-        }
-        fetchPost();
+        const fetchPosts = async () => {
+            const res = username
+                ? await axios.get("/posts/profile/" + username)
+                : await axios.get("/posts/timeline/6309be9011d459c2775a7501");
+            setPosts(res.data);
+        };
+        fetchPosts();
     }, [username]);
 
     return posts

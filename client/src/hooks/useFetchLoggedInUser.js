@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 function useFetchLoggedInUser() {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem('user');

@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./Feed.scss";
-import { CreatePost, Posts, UpToTop } from "../";
-import axios from "axios";
+import React from 'react';
+import './Feed.scss';
+import { CreatePost, Posts, UpToTop } from '../';
+import useFetchPost from '../../hooks/useFetchPost';
 
-const Feed = ({ username }) => {
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const res = username
-                ? await axios.get("/posts/profile/" + username)
-                : await axios.get("/posts/timeline/6309be9011d459c2775a7501");
-            setPosts(res.data);
-        };
-        fetchPosts();
-    }, [username]);
+const Feed = () => {
+    const posts = useFetchPost();
 
     return (
         <div className="hvdFeed">

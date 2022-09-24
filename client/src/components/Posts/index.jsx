@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
-import "./Posts.scss";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import ReplyIcon from "@mui/icons-material/Reply";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import axios from "axios";
+import React, { Fragment, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Posts.scss';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import ReplyIcon from '@mui/icons-material/Reply';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import axios from 'axios';
 import { format } from 'timeago.js';
 import Avatar from '@mui/material/Avatar';
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
+import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
 
 const Posts = ({ post }) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -22,32 +23,41 @@ const Posts = ({ post }) => {
         fetchUser();
     }, [post.userId]);
 
-    const PostHeader = () => (
-        <div className="post__header">
-            <Link to={"/profile/" + user.username}>
-                <div className="post__poster">
-                    <Box display="flex" justifyContent="center" alignContent="center">
-                        <Avatar src={user ? PF + user.avatar : PF + "images/noUser.png"} sx={{ width: 40, height: 40 }} />
-                    </Box>
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            margin: "0 10px"
-                        }}
-                    >
-                        <div className="post__username">
-                            {user.firstname + " " + user.lastname}
-                        </div>
-                        <div className="post__date">
-                            {format(post.createdAt)}
+    // User logged
+    const currentUser = useFetchLoggedInUser();
+
+    const PostHeader = () => {
+        
+        const ButtonFollow = () => {
+            return <div className="post__following">Theo Dõi</div>;
+        };
+
+        return (
+            <div className="post__header">
+                <Link to={'/profile/' + user.username}>
+                    <div className="post__poster">
+                        <Box display="flex" justifyContent="center" alignContent="center">
+                            <Avatar
+                                src={user ? PF + user.avatar : PF + 'images/noUser.png'}
+                                sx={{ width: 40, height: 40 }}
+                            />
+                        </Box>
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                margin: '0 10px',
+                            }}
+                        >
+                            <div className="post__username">{user.firstname + ' ' + user.lastname}</div>
+                            <div className="post__date">{format(post.createdAt)}</div>
                         </div>
                     </div>
-                </div>
-            </Link>
-            <div className="post__following">Theo Dõi</div>
-        </div>
-    )
+                </Link>
+                {currentUser.username === user.username ? <Fragment /> : <ButtonFollow />}
+            </div>
+        );
+    };
 
     const PostBody = () => (
         <div className="post__body">
@@ -60,40 +70,38 @@ const Posts = ({ post }) => {
             </div>
             <div className="post__topic">{post.tag}</div>
         </div>
-    )
+    );
 
     const PostFooter = () => {
         const [favourite, setFavourite] = useState(post.favourites.length);
         const [isFavourite, setIsFavourite] = useState(false);
-        const [comment, setComment] = useState(post.comments.length)
-        const [share, setShare] = useState(post.shares.length)
-        const [view, setView] = useState(post.views.length)
+        const [comment, setComment] = useState(post.comments.length);
+        const [share, setShare] = useState(post.shares.length);
+        const [view, setView] = useState(post.views.length);
 
         const handleFavourite = () => {
-            setFavourite(
-                isFavourite ? favourite - 1 : favourite + 1
-            );
+            setFavourite(isFavourite ? favourite - 1 : favourite + 1);
             setIsFavourite(!isFavourite);
-        }
+        };
 
         return (
             <div className="post__footer">
                 <div className="showInteractive">
-                    <div className="like" style={favourite > 0 ? { display: "flex" } : { display: "none" }} >
+                    <div className="like" style={favourite > 0 ? { display: 'flex' } : { display: 'none' }}>
                         <i className="favoriteIcon">
                             <FavoriteIcon />
                         </i>
                         <span>{favourite}</span>
                     </div>
 
-                    <div className="comment" style={comment > 0 ? { display: "flex" } : { display: "none" }}>
+                    <div className="comment" style={comment > 0 ? { display: 'flex' } : { display: 'none' }}>
                         <i className="commentIcon">
                             <ChatBubbleOutlineIcon />
                         </i>
                         <span>{comment}</span>
                     </div>
 
-                    <div className="share" style={share > 0 ? { display: "flex" } : { display: "none" }}>
+                    <div className="share" style={share > 0 ? { display: 'flex' } : { display: 'none' }}>
                         <i className="shareIcon">
                             <ReplyIcon />
                         </i>
@@ -129,8 +137,8 @@ const Posts = ({ post }) => {
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <div className="hvdPosts">
