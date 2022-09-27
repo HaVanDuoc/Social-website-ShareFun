@@ -2,9 +2,9 @@ import { Box, Button, Checkbox, FormHelperText, Link, TextField, Typography } fr
 import React from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useDispatch } from 'react-redux';
-import { FormLogin } from '../../redux/actions/SignInOutAction';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { FormLogin } from '../../../redux/actions/SignInOutAction';
 
 function FormRegister() {
     const dispatch = useDispatch();

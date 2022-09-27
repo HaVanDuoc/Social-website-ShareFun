@@ -1,15 +1,13 @@
 import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { FormRegister as FormRegisterAction } from '../../redux/actions/SignInOutAction.js';
+import { FormRegister as FormRegisterAction } from '../../../redux/actions/SignInOutAction.js';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import LoginCall from '../../store/CallApi.js';
-import { CloseModalLogin } from '../../redux/actions/ModalAction.js';
-import { useState } from 'react';
+import { CloseModalLogin } from '../../../redux/actions/ModalAction.js';
+import { LoginCall } from '../../../api/CallApi';
 
 function FormLogin() {
-    const [state, setState] = useState();
     const dispatch = useDispatch();
     const initialValues = {
         username: '',
@@ -30,8 +28,8 @@ function FormLogin() {
             LoginCall({ email: values.username, password: values.password }, dispatch);
             props.resetForm();
             props.setSubmitting(false);
+            
             dispatch(CloseModalLogin());
-            setState();
         }, 2000);
     };
 
