@@ -7,12 +7,24 @@ const useFetchUser = () => {
     const username = useParams().username;
 
     useEffect(() => {
+        let isMounted = true;
+        const controller = new AbortController();
+
         const fetchUser = async () => {
-            const res = await axios.get(`/users?username=${username}`);
-            setUser(res.data);
+            const res = await axios.get(`/users?username=${username}`, {
+                signal: controller.signal
+            });
+            isMounted && setUser(res.data)
         };
+
         fetchUser();
-    }, [username]);
+
+        return () => {
+            isMounted = false
+            controller.abort()
+        }
+
+    }, []);
 
     return user
 }
