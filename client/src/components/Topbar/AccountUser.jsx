@@ -36,15 +36,18 @@ const AccountUser = () => {
             setAnchorEl(e.currentTarget);
         };
 
+        // Click button log out
         const handleClickLogOut = (e) => {
             e.preventDefault();
             localStorage.clear();
+            window.location.href('/');
         };
 
         const handleClose = () => {
             setAnchorEl(null);
         };
 
+        // Click button "Trang cá nhân"
         const handleClickProfile = (e) => {
             e.preventDefault();
             let path = 'profile/' + user.username;

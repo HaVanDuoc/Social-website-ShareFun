@@ -14,14 +14,14 @@ const Profile = () => {
         return (
             <div className="headerProfile">
                 <div className="coverImage">
-                    <img src={PF + user.coverPicture} alt="" />
+                    <img src={PF + user?.coverPicture} alt="" />
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
-                        <Avatar src={PF + user.avatar} alt={user.username} sx={{ width: '100%', height: '100%' }} />
+                        <Avatar src={PF + user?.avatar} alt={user?.username} sx={{ width: '100%', height: '100%' }} />
                     </div>
-                    <div className="userName">{user.firstname + ' ' + user.lastname}</div>
-                    <div className="signature">{user.signature}</div>
+                    <div className="userName">{user?.firstname + ' ' + user?.lastname}</div>
+                    <div className="signature">{user?.signature}</div>
                 </div>
                 <div className="activityStatistics">
                     <div className="wrapperItem">

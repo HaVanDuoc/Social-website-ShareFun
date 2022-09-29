@@ -1,15 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Posts.scss';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import ReplyIcon from '@mui/icons-material/Reply';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
 import { format } from 'timeago.js';
 import Avatar from '@mui/material/Avatar';
 import { Box } from '@mui/material';
 import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
+import PostFooter from './PostFooter';
 
 const Posts = ({ post }) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -27,7 +24,6 @@ const Posts = ({ post }) => {
     const currentUser = useFetchLoggedInUser();
 
     const PostHeader = () => {
-        
         const ButtonFollow = () => {
             return <div className="post__following">Theo Dõi</div>;
         };
@@ -71,74 +67,77 @@ const Posts = ({ post }) => {
             <div className="post__topic">{post.tag}</div>
         </div>
     );
+    //     const [favourite, setFavourite] = useState(post.favourites.length);
+    //     const [isFavourite, setIsFavourite] = useState(false);
+    //     const [comment, setComment] = useState(post.comments.length);
+    //     const [share, setShare] = useState(post.shares.length);
+    //     const [view, setView] = useState(post.views.length);
 
-    const PostFooter = () => {
-        const [favourite, setFavourite] = useState(post.favourites.length);
-        const [isFavourite, setIsFavourite] = useState(false);
-        const [comment, setComment] = useState(post.comments.length);
-        const [share, setShare] = useState(post.shares.length);
-        const [view, setView] = useState(post.views.length);
+    //     const handleFavourite = () => {
+    //         try {
+    //             axios.put('/posts/' + post._id + '/like', { userId: currentUser._id });
+    //             setIsFavourite(!isFavourite);
+    //             setFavourite(post.favourites.length);
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
 
-        const handleFavourite = () => {
-            setFavourite(isFavourite ? favourite - 1 : favourite + 1);
-            setIsFavourite(!isFavourite);
-        };
+    //     return (
+    //         <div className="post__footer">
+    //             <div className="showInteractive">
+    //                 <div className="like" style={favourite > 0 ? { display: 'flex' } : { display: 'none' }}>
+    //                     <i className="favoriteIcon">
+    //                         <FavoriteIcon />
+    //                     </i>
+    //                     <span>{favourite}</span>
+    //                 </div>
 
-        return (
-            <div className="post__footer">
-                <div className="showInteractive">
-                    <div className="like" style={favourite > 0 ? { display: 'flex' } : { display: 'none' }}>
-                        <i className="favoriteIcon">
-                            <FavoriteIcon />
-                        </i>
-                        <span>{favourite}</span>
-                    </div>
+    //                 <div className="comment" style={comment > 0 ? { display: 'flex' } : { display: 'none' }}>
+    //                     <i className="commentIcon">
+    //                         <ChatBubbleOutlineIcon />
+    //                     </i>
+    //                     <span>{comment}</span>
+    //                 </div>
 
-                    <div className="comment" style={comment > 0 ? { display: 'flex' } : { display: 'none' }}>
-                        <i className="commentIcon">
-                            <ChatBubbleOutlineIcon />
-                        </i>
-                        <span>{comment}</span>
-                    </div>
+    //                 <div className="share" style={share > 0 ? { display: 'flex' } : { display: 'none' }}>
+    //                     <i className="shareIcon">
+    //                         <ReplyIcon />
+    //                     </i>
+    //                     <span> chia sẻ</span>
+    //                 </div>
 
-                    <div className="share" style={share > 0 ? { display: 'flex' } : { display: 'none' }}>
-                        <i className="shareIcon">
-                            <ReplyIcon />
-                        </i>
-                        <span> chia sẻ</span>
-                    </div>
+    //                 <div className="view">
+    //                     <i className="viewIcon">
+    //                         <VisibilityIcon />
+    //                     </i>
+    //                     <span>{view}</span>
+    //                 </div>
+    //             </div>
 
-                    <div className="view">
-                        <i className="viewIcon">
-                            <VisibilityIcon />
-                        </i>
-                        <span>{view}</span>
-                    </div>
-                </div>
-
-                <div className="postInteraction">
-                    <div className="like" onClick={handleFavourite}>
-                        <i className="favoriteIcon">
-                            <FavoriteIcon />
-                        </i>
-                        <span>Yêu thích</span>
-                    </div>
-                    <div className="comment">
-                        <i className="commentIcon">
-                            <ChatBubbleOutlineIcon />
-                        </i>
-                        <span>Bình luận</span>
-                    </div>
-                    <div className="share">
-                        <i className="shareIcon">
-                            <ReplyIcon />
-                        </i>
-                        <span>Chia sẻ</span>
-                    </div>
-                </div>
-            </div>
-        );
-    };
+    //             <div className="postInteraction">
+    //                 <div className="like" onClick={handleFavourite}>
+    //                     <i className="favoriteIcon">
+    //                         <FavoriteIcon />
+    //                     </i>
+    //                     <span>Yêu thích</span>
+    //                 </div>
+    //                 <div className="comment">
+    //                     <i className="commentIcon">
+    //                         <ChatBubbleOutlineIcon />
+    //                     </i>
+    //                     <span>Bình luận</span>
+    //                 </div>
+    //                 <div className="share">
+    //                     <i className="shareIcon">
+    //                         <ReplyIcon />
+    //                     </i>
+    //                     <span>Chia sẻ</span>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // };
 
     return (
         <div className="hvdPosts">
@@ -146,7 +145,7 @@ const Posts = ({ post }) => {
                 <div id="post">
                     <PostHeader />
                     <PostBody />
-                    <PostFooter />
+                    <PostFooter post={post} />
                 </div>
             </div>
         </div>

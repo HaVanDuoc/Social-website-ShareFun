@@ -33,5 +33,6 @@ const AuthReducer = (state = AUTH_INITIAL_STATE, action) => {
 }
 
 export const selectedUser = state => state.Auth.user
+export const selectorError = state => state.Auth.error
 
 export default AuthReducer

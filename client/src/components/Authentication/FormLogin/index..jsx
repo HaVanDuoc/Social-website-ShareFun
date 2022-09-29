@@ -1,14 +1,17 @@
-import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { FormRegister as FormRegisterAction } from '../../../redux/actions/SignInOutAction.js';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { CloseModalLogin } from '../../../redux/actions/ModalAction.js';
 import { LoginCall } from '../../../api/CallApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { selectorError } from '../../../redux/reducers/AuthReducer.js';
+import { CloseModalLogin } from '../../../redux/actions/ModalAction.js';
+import { Box, Button, Link, TextField, Typography } from '@mui/material';
+import { FormRegister as FormRegisterAction } from '../../../redux/actions/SignInOutAction.js';
 
 function FormLogin() {
+    const error = useSelector(selectorError);
     const dispatch = useDispatch();
+
     const initialValues = {
         username: '',
         password: '',
@@ -25,11 +28,16 @@ function FormLogin() {
 
     const onSubmit = (values, props) => {
         setTimeout(() => {
-            LoginCall({ email: values.username, password: values.password }, dispatch);
+            LoginCall({ email: values.username, password: values.password }, dispatch);           
             props.resetForm();
             props.setSubmitting(false);
-            
-            dispatch(CloseModalLogin());
+            // if there is no error then close the modal and vice versa
+            if (error === false) {
+                dispatch(CloseModalLogin());
+                window.location.href = '/';
+            } else {
+                console.log('Đăng nhập thất bại');
+            }
         }, 2000);
     };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './CreatePost.scss';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import PhotoIcon from '@mui/icons-material/Photo';
@@ -17,6 +17,8 @@ const CreatePost = () => {
     // fetch user logged
     const user = useFetchLoggedInUser();
     const isLogged = useCheckLogged();
+
+    console.log(isLogged);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -40,7 +42,11 @@ const CreatePost = () => {
                             sx={{ width: 40, height: 40 }}
                         ></Avatar>
                     </Box>
-                    <input type="text" placeholder="Bạn đang nghĩ gì thế?" onClick={handleClick} />
+                    <input
+                        type="text"
+                        placeholder={user ? `Bạn đang nghĩ gì thế ${user.lastname}?` : 'Bạn đang nghĩ gì thế?'}
+                        onClick={handleClick}
+                    />
                 </div>
                 <div className="childBottom">
                     <div className="item liveVideo" onClick={handleClick}>

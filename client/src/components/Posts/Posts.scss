@@ -32,8 +32,8 @@
                 cursor: pointer;
                 transition: all 0.4s ease;
 
-                &:hover{
-                    .post__username{
+                &:hover {
+                    .post__username {
                         color: #0080ff;
                     }
                 }
@@ -65,7 +65,6 @@
                 color: #fff;
                 transition: all 0.4s ease;
             }
-
         }
     }
 
@@ -78,7 +77,7 @@
         }
 
         .post__content {
-            font-size: .9rem;
+            font-size: 0.9rem;
             margin: 10px 0;
 
             div {
@@ -92,7 +91,7 @@
     }
 
     .post__topic {
-        font-size: .8rem;
+        font-size: 0.8rem;
         color: var(--main-color);
         cursor: pointer;
 
@@ -155,7 +154,6 @@
                 justify-content: flex-end;
                 pointer-events: none;
             }
-
         }
 
         .postInteraction {
@@ -184,7 +182,11 @@
                     margin-right: 10px;
                 }
             }
-        }
 
+            .favourited {
+                background-color: #fcb8b8;
+                color: red;
+            }
+        }
     }
 }
