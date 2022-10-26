@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './CreatePost.scss';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import PhotoIcon from '@mui/icons-material/Photo';

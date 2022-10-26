@@ -1,39 +1,20 @@
-import React from "react";
-import "./Rightbar.scss";
+import React from 'react';
+import './RightBar.scss';
 
 // data
-import { DataHotTopic, DataOfficialInformation } from "./Data";
+import NewPostCard from './components/NewPostCard';
+import OfficialInformation from './components/OfficialInformation';
+import HotTopic from './components/HotTopic';
+import { Box } from '@mui/material';
 
-const Rightbar = () => {
+const RightBar = () => {
     return (
-        <div className="hvdRightBar">
-            <div className="rightbarWrapper">
-                {/* <div className="rightbarBanner"><Banner /></div> */}
-                <div className="rightbarComponent officialInformation">
-                    <div className="rightbarTitle">Thông tin chính thức</div>
-                    {DataOfficialInformation.map((item) => (
-                        <div className="rightbarItem" key={item.id}>
-                            <i style={{ color: "dodgerblue" }}>{item.icon}</i>
-                            <span>{item.name}</span>
-                        </div>
-                    ))}
-                </div>
-                <div className="rightbarComponent hotTopic">
-                    <div className="rightbarTitle">Chủ đề hot</div>
-
-                    {DataHotTopic.map((item) => (
-                        <div
-                            className="rightbarItem hotTopicItem"
-                            key={item.id}
-                        >
-                            <div className="name">{item.name}</div>
-                            <div className="count">{item.count}</div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
+        <Box className="hvdRightBar">
+            <NewPostCard />
+            <OfficialInformation />
+            <HotTopic />
+        </Box>
     );
 };
 
-export default Rightbar;
+export default RightBar;
