@@ -2,10 +2,10 @@ import React from 'react';
 import './RightBar.scss';
 
 // data
-import NewPostCard from './components/NewPostCard';
 import OfficialInformation from './components/OfficialInformation';
 import HotTopic from './components/HotTopic';
 import { Box } from '@mui/material';
+import NewPostCard from './components/NewPostCard';
 
 const RightBar = () => {
     return (
