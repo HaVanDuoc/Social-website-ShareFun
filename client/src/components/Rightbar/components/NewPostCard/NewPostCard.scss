@@ -1,0 +1,62 @@
+.NewPostCard {
+    .grid {
+        display: grid;
+        grid-template-columns: auto auto auto;
+
+        .item {
+            aspect-ratio: 1/1;
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            // background-color: aqua;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: var(--hover-color);
+            }
+
+            .post-icon {
+                aspect-ratio: 1/1;
+                width: 50px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #18d2da33;
+                margin-bottom: 8px;
+
+                svg {
+                    font-size: 30px;
+                }
+
+                .icon-2 {
+                    color: rgba(61, 184, 245, 0.2);
+                }
+            }
+
+            .post-icon.icon-1 {
+                color: rgb(20, 172, 20);
+                background-color: rgba(144, 238, 144, 0.5);
+            }
+
+            .post-icon.icon-2{
+                color: #3232fd;
+                background-color: rgb(50, 50, 253, 0.3);
+            }
+
+            .post-icon.icon-3{
+                color: rgb(212, 50, 50);
+                background-color: rgb(212, 50, 50, 0.2);
+            }
+
+            span {
+                color: var(--text-color);
+                font-size: 14px;
+            }
+        }
+    }
+}
