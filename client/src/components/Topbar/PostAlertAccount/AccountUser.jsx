@@ -11,11 +11,11 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
-import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
+import useFetchLoggedInUser from '../../../hooks/useFetchLoggedInUser';
 import { useDispatch } from 'react-redux';
-import { FormLogin } from '../../redux/actions/SignInOutAction';
-import { OpenModalLogin } from '../../redux/actions/ModalAction';
-import useCheckLogged from '../../hooks/useCheckLogged';
+import { FormLogin } from '../../../redux/actions/SignInOutAction';
+import { OpenModalLogin } from '../../../redux/actions/ModalAction';
+import useCheckLogged from '../../../hooks/useCheckLogged';
 
 const AccountUser = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;

@@ -1,0 +1,33 @@
+:root {
+    --topBar-height: 45px;
+}
+
+.topBarSearch {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .topBarSearchBtn {
+        aspect-ratio: 1/1;
+        width: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        color: var(--main-color);
+    }
+
+    .topBarSearchInput {
+        width: 40vw;
+        max-width: 550px;
+        height: var(--topBar-height);
+        border: none;
+        outline: none;
+        font-size: 1em;
+        padding: 0 calc(var(--topBar-line-height) / 2) 0 var(--topBar-line-height);
+        border-radius: var(--topBar-line-height);
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+}
