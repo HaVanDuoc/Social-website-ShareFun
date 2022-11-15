@@ -22,7 +22,7 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="hvdSidebar">
+        <div className="hvdSidebar border-radius">
             <div className="title">Gợi ý</div>
             <ul className="sidebarNavLink">
                 {slice.map((item, index) => {

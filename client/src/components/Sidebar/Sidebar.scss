@@ -1,11 +1,11 @@
 .hvdSidebar {
     position: fixed;
-    left: 0;
-    width: 379px;
+    left: 50px;
+    width: 22vw;
     height: calc(100vh - 70px);
-    padding: 10px;
     overflow-y: scroll;
     transition: all .4s ease;
+    background-color: var(--background-color);
 
     &:hover::-webkit-scrollbar {
         display: block;
@@ -37,11 +37,11 @@
     .sidebarNavLink {
         display: flex;
         flex-direction: column;
-        // height: 100%;
+        padding: 8px;
 
         .navItem {
             font-size: 1rem;
-            color: var(--font-color);
+            color: var(--text-color);
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -52,6 +52,7 @@
 
             &:hover {
                 background-color: var(--hover-color);
+                transition: all .2s ease;
             }
 
             a {
