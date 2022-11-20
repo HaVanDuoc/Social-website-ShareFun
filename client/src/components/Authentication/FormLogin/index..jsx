@@ -34,7 +34,7 @@ function FormLogin() {
             // if there is no error then close the modal and vice versa
             if (error === false) {
                 dispatch(CloseModalLogin());
-                window.location.href = '/';
+                window.location.reload()
             } else {
                 console.log('Đăng nhập thất bại');
             }
