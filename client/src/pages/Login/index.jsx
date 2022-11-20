@@ -1,29 +1,51 @@
 import React, { useRef } from 'react';
 import './Login.scss';
-import LoginCall from '../../store/CallApi.js';
 import { useContext } from 'react';
 import AuthContext from '../../store/AuthContext';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [nav, setNav] = useState("Login")
+    const [nav, setNav] = useState('Login');
+    const navigate = useNavigate();
 
     const FormLogin = () => {
         const email = useRef();
         const password = useRef();
         const [state, dispatch] = useContext(AuthContext);
         const { isFetching } = state;
+        const [userInput, setUserInput] = useState({ email: '', password: '' });
+        const [errorMessage, setErrorMessage] = useState(null);
 
-        const handleLogin = (e) => {
-            e.preventDefault();
-            LoginCall({ email: email.current.value, password: password.current.value }, dispatch);
+        const onChangeHanlde = (e) => {
+            setUserInput({ ...userInput, [e.target.email]: e.target.value });
+        };
+
+        const handleLogin = async (e) => {
+            try {
+                e.preventDefault();
+
+                const option = {
+                    method: 'post',
+                    url: '/server/auth/login',
+                    data: userInput,
+                };
+
+                const res = await axios(option);
+                const { token, userName } = res.data.data;
+                localStorage.setItem('token', token);
+                dispatch({ type: 'LOGIN_SUCCESS', payload: userName });
+                navigate.push('/');
+            } catch (error) {
+                setErrorMessage(error.res.data.message);
+            }
         };
 
         const handleRegister = (e) => {
             e.preventDefault();
-            setNav("Register")
-        }
+            setNav('Register');
+        };
 
         return (
             <form action="" className="formLogin" onSubmit={handleLogin}>
@@ -35,7 +57,9 @@ const Login = () => {
                 </button>
                 <div className="forgotPasswordLink">Quên mật khẩu?</div>
                 <hr />
-                <button className="button registerBtn" onClick={handleRegister}>Tạo tài khoản mới</button>
+                <button className="button registerBtn" onClick={handleRegister}>
+                    Tạo tài khoản mới
+                </button>
             </form>
         );
     };
@@ -43,7 +67,7 @@ const Login = () => {
     const FormRegister = () => {
         const firstname = useRef();
         const lastname = useRef();
-        const username = useRef()
+        const username = useRef();
         const email = useRef();
         const password = useRef();
         const confirmPassword = useRef();
@@ -51,7 +75,7 @@ const Login = () => {
         const handleSubmit = async (e) => {
             e.preventDefault();
             if (password.current.value !== confirmPassword.current.value) {
-                password.current.setCustomValidity("Mật khẩu không trùng khớp!")
+                password.current.setCustomValidity('Mật khẩu không trùng khớp!');
             } else {
                 const user = {
                     firstname: firstname.current.value,
@@ -59,15 +83,14 @@ const Login = () => {
                     username: username.current.value,
                     email: email.current.value,
                     password: password.current.value,
-                }
+                };
                 try {
-                    await axios.post("/auth/register", user)
-
+                    await axios.post('/auth/register', user);
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             }
-        }
+        };
 
         return (
             <form action="" className="formRegister" onSubmit={handleSubmit}>
@@ -81,7 +104,9 @@ const Login = () => {
                 <button type="submit" className="button loginBtn">
                     Đăng ký
                 </button>
-                <div className="loginLink" onClick={nav => setNav("Login")}>Đăng nhập vào HaVanDuoc</div>
+                <div className="loginLink" onClick={(nav) => setNav('Login')}>
+                    Đăng nhập vào HaVanDuoc
+                </div>
             </form>
         );
     };
@@ -93,9 +118,7 @@ const Login = () => {
                     <div className="logo">HaVanDuoc</div>
                     <div className="slogan">Connect with friends and the world</div>
                 </div>
-                <div className="rightPage">
-                    {nav === "Login" ? <FormLogin /> : <FormRegister />}
-                </div>
+                <div className="rightPage">{nav === 'Login' ? <FormLogin /> : <FormRegister />}</div>
             </div>
         </div>
     );

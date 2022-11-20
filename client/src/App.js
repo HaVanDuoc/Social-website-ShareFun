@@ -17,6 +17,7 @@ function App() {
                         let Layout = route.layout || DefaultLayout;
 
                         const Page = route.page;
+                        
                         return (
                             <Route
                                 exact
