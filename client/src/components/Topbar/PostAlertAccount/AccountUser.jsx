@@ -40,7 +40,7 @@ const AccountUser = () => {
         const handleClickLogOut = (e) => {
             e.preventDefault();
             localStorage.clear();
-            window.location.href('/');
+            window.location.reload();
         };
 
         const handleClose = () => {
