@@ -1,4 +1,5 @@
 import { LoginLayout } from "../Layouts/";
+import OnlyTopBarLayout from "../Layouts/OnlyTopBarLayout";
 import { Friends, Home, Login, Profile } from "../pages";
 import Image from "../pages/NewPost/Image";
 import Post from "../pages/NewPost/Post";
@@ -15,9 +16,9 @@ const publicRoutes = [
     { path: "/login", page: Login, layout: LoginLayout },
 
     // Post
-    { path: "/newPost/post", page: Post },
-    { path: "/newPost/image", page: Image },
-    { path: "/newPost/video", page: Video },
+    { path: "/newPost/post", page: Post, layout: OnlyTopBarLayout },
+    { path: "/newPost/image", page: Image, layout: OnlyTopBarLayout },
+    { path: "/newPost/video", page: Video, layout: OnlyTopBarLayout },
 
 ];
 
