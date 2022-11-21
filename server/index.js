@@ -4,11 +4,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const cors = require("cors")
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 
-const PORT = process.env.PORT || 1810;
+const PORT = process.env.PORT || 8080;
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URL);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors())
 
 app.use("/server/users", userRoute);
 app.use("/server/auth", authRoute);

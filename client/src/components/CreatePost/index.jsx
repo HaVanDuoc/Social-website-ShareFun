@@ -18,8 +18,6 @@ const CreatePost = () => {
     const user = useFetchLoggedInUser();
     const isLogged = useCheckLogged();
 
-    console.log(isLogged);
-
     const handleClick = (e) => {
         e.preventDefault();
 

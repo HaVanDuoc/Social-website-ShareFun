@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { LoginCall } from '../../../api/CallApi';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { selectorError } from '../../../redux/reducers/AuthReducer.js';
-import { CloseModalLogin } from '../../../redux/actions/ModalAction.js';
 import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import { FormRegister as FormRegisterAction } from '../../../redux/actions/SignInOutAction.js';
+import axios from 'axios';
+import ErrorIcon from '@mui/icons-material/Error';
+import Alert from '@mui/material/Alert';
 
 function FormLogin() {
-    const error = useSelector(selectorError);
     const dispatch = useDispatch();
+    const [error, setError] = useState('');
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value });
+    };
 
     const initialValues = {
         username: '',
@@ -22,23 +31,31 @@ function FormLogin() {
     };
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().email('*Định dạng email sai').required('*Không được để trống email'),
-        password: Yup.string().required('*Mật khẩu không được để trống'),
+        username: Yup.string().email('*Định dạng email sai').required('*Không được để trống email').default(user.email),
+        password: Yup.string().required('*Mật khẩu không được để trống').default(user.password),
     });
 
-    const onSubmit = (values, props) => {
-        setTimeout(() => {
-            LoginCall({ email: values.username, password: values.password }, dispatch);           
-            props.resetForm();
-            props.setSubmitting(false);
-            // if there is no error then close the modal and vice versa
-            if (error === false) {
-                dispatch(CloseModalLogin());
-                window.location.reload()
+    const onSubmit = async () => {
+        try {
+            const url = '/auth/login';
+            const res = await axios.post(url, user);
+            const message = res.data.message;
+
+            if (message !== 'Đăng nhập thành công!') {
+                setError(message);
             } else {
-                console.log('Đăng nhập thất bại');
+                setError('');
+                const token = JSON.stringify(res.data);
+                localStorage.setItem('token', token);
+                localStorage.setItem('isLogged', true);
+                window.location.reload();
             }
-        }, 2000);
+        } catch (error) {
+            if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+            } else {
+                setError(error.response.data.message);
+            }
+        }
     };
 
     return (
@@ -62,12 +79,14 @@ function FormLogin() {
                             <Field
                                 as={TextField}
                                 label="Tên đăng nhập/Email"
-                                name="username"
+                                name="email"
                                 type="text"
                                 fullWidth
                                 required
-                                helperText={<ErrorMessage name="username" />}
+                                helperText={<ErrorMessage name="email" />}
                                 sx={{ margin: '10px 0' }}
+                                value={user.email}
+                                onChange={handleChange}
                             />
                             <Field
                                 as={TextField}
@@ -78,7 +97,10 @@ function FormLogin() {
                                 required
                                 helperText={<ErrorMessage name="password" />}
                                 sx={{ margin: '10px 0' }}
+                                value={user.password}
+                                onChange={handleChange}
                             />
+                            {error && <Alert severity="error">{error}</Alert>}
                             <Field
                                 as={Button}
                                 type="submit"

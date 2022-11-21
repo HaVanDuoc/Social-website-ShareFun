@@ -5,43 +5,54 @@ const bcrypt = require("bcrypt");
 
 //REGISTER
 router.post("/register", async (req, res) => {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const { username, email, password } = req.body
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newUser = await new User({
-            username: req.body.username,
-            email: req.body.email,
-            password: hashedPassword,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-        });
-
-        const user = await newUser.save();
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500).json(error);
-    }
+    User.findOne({ email: email }, async (err, user) => {
+        if (user) {
+            res.send({ message: "Tên người dùng đã tồn tại!" })
+        } else {
+            const user = await new User({
+                username,
+                email,
+                password: hashedPassword
+            })
+            user.save(err => {
+                if (err) {
+                    res.send(err)
+                } else {
+                    res.send({ message: "Đăng ký thành công!" })
+                }
+            })
+        }
+    })
 });
 
 //LOGIN
-router.post("/login", async (req, res) => {
-    try {
-        const user = await User.findOne({ email: req.body.email });
-        !user && res.status(404).json("user not found");
+router.post("/login", (req, res) => {
+    const { email, password } = req.body
 
-        const validPassword = await bcrypt.compare(
-            req.body.password,
-            user.password
-        );
+    User.findOne({ email: email }, async (err, user) => {
 
-        !validPassword && res.status(400).json("Wrong password");
+        // check email
+        if (user) {
+            // check password
+            const match = await bcrypt.compare(
+                password,
+                user.password
+            );
 
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500)
-        console.log(error);
-    }
+            if (match) {
+                // login successful
+                res.send({ message: "Đăng nhập thành công!", user: user });
+            } else {
+                res.send({ message: "Sai mật khẩu!" });
+            }
+        } else {
+            res.send({ message: "Tài khoản không tồn tại!" });
+        }
+    })
 });
 
 module.exports = router;

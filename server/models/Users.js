@@ -5,32 +5,32 @@ const UserSchema = new Schema(
     {
         username: {
             type: String,
-            require: true,
+            // require: true,
             min: 3,
             max: 20,
             unique: true,
         },
         email: {
             type: String,
-            require: true,
+            // require: true,
             min: 3,
             max: 50,
             unique: true,
         },
         password: {
             type: String,
-            require: true,
+            // require: true,
             min: 6,
         },
         firstname: {
             type: String,
-            require: true,
+            // require: true,
             min: 2,
             max: 50,
         },
         lastname: {
             type: String,
-            require: true,
+            // require: true,
             min: 2,
             max: 50,
         },

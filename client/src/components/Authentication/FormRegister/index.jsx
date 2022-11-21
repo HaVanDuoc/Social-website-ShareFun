@@ -1,40 +1,71 @@
-import { Box, Button, Checkbox, FormHelperText, Link, TextField, Typography } from '@mui/material';
 import React from 'react';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import * as Yup from 'yup';
+import axios from 'axios';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import { FormLogin } from '../../../redux/actions/SignInOutAction';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Alert, Box, Button, Checkbox, FormHelperText, Link, TextField, Typography } from '@mui/material';
+import ErrorIcon from '@mui/icons-material/Error';
 
 function FormRegister() {
-    const dispatch = useDispatch();
-
     const initialValues = {
         email: '',
         password: '',
         confirmPassword: '',
         eula: false,
     };
+    const dispatch = useDispatch();
+    const [error, setError] = useState(null);
+
+    const [userInput, setUserInput] = useState({
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
+
+    const handleChange = ({ currentTarget: input }) => {
+        setUserInput({ ...userInput, [input.name]: input.value });
+    };
+
+    const handleBackToFormLogin = () => dispatch(FormLogin());
+
+    const onSubmit = async () => {
+        try {
+            const url = '/auth/register';
+            const res = await axios.post(url, userInput);
+            const message = res.data.message;
+
+            if (message !== 'Đăng ký thành công!') {
+                setError(message);
+            } else {
+                handleBackToFormLogin();
+            }
+        } catch (error) {
+            if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+            } else {
+                setError(error.response.data.message);
+            }
+        }
+    };
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email('*Định dạng email sai').required('*Không được để trống email'),
+        email: Yup.string()
+            .email('*Định dạng email sai')
+            .required('*Không được để trống email')
+            .default(userInput.email),
         password: Yup.string()
             .min(8, '*Mật khẩu tối thiểu 8 ký tự (không thể toàn chữ hoặc số)')
             .max(30, '*Mật khẩu tối đa 30 ký tự (không thể toàn chữ hoặc số)')
-            .required('*Mật khẩu không được để trống'),
+            .required('*Mật khẩu không được để trống')
+            .default(userInput.password),
         confirmPassword: Yup.string()
             .oneOf([Yup.ref('password')], '*Mật khẩu không trùng khớp')
-            .required('*Vui lòng xác nhận mật khẩu'),
+            .required('*Vui lòng xác nhận mật khẩu')
+            .default(userInput.confirmPassword),
         eula: Yup.string().oneOf(['true'], '*Bạn có chấp nhận Điều khoản dịch vụ & Chính Sách Về Quyền Riêng Tư'),
     });
-
-    const onSubmit = (values, props) => {
-        setTimeout(() => {
-            props.resetForm();
-            props.setSubmitting(false);
-            console.log('values', values);
-        }, 2000);
-    };
 
     const style = {
         '.MuiFormHelperText-root': {
@@ -62,6 +93,8 @@ function FormRegister() {
                                 fullWidth
                                 helperText={<ErrorMessage name="email" />}
                                 sx={{ margin: '10px 0' }}
+                                value={userInput.email}
+                                onChange={handleChange}
                             />
                             <Field
                                 as={TextField}
@@ -71,6 +104,8 @@ function FormRegister() {
                                 fullWidth
                                 helperText={<ErrorMessage name="password" />}
                                 sx={{ margin: '10px 0' }}
+                                value={userInput.password}
+                                onChange={handleChange}
                             />
                             <Field
                                 as={TextField}
@@ -80,6 +115,8 @@ function FormRegister() {
                                 fullWidth
                                 helperText={<ErrorMessage name="confirmPassword" />}
                                 sx={{ margin: '10px 0' }}
+                                value={userInput.confirmPassword}
+                                onChange={handleChange}
                             />
                             <Box
                                 sx={{
@@ -102,6 +139,7 @@ function FormRegister() {
                             <FormHelperText>
                                 <ErrorMessage name="eula" />
                             </FormHelperText>
+                            {error && <Alert severity="error">{error}</Alert>}
                             <Field
                                 as={Button}
                                 type="submit"
@@ -119,7 +157,7 @@ function FormRegister() {
                 <Box align="center" marginTop="30px">
                     <Button
                         fontSize="18px"
-                        onClick={() => dispatch(FormLogin())}
+                        onClick={handleBackToFormLogin}
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
