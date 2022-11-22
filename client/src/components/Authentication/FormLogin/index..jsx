@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik, setIn } from 'formik';
 import { Box, Button, Link, TextField, Typography } from '@mui/material';
 import { FormRegister as FormRegisterAction } from '../../../redux/actions/SignInOutAction.js';
 import axios from 'axios';
-import ErrorIcon from '@mui/icons-material/Error';
 import Alert from '@mui/material/Alert';
 
 function FormLogin() {
     const dispatch = useDispatch();
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const [user, setUser] = useState({
         email: '',
         password: '',
@@ -41,14 +41,16 @@ function FormLogin() {
             const res = await axios.post(url, user);
             const message = res.data.message;
 
-            if (message !== 'Đăng nhập thành công!') {
-                setError(message);
-            } else {
-                setError('');
+            if (message === 'Đăng nhập thành công!') {
                 const token = JSON.stringify(res.data);
                 localStorage.setItem('token', token);
                 localStorage.setItem('isLogged', true);
-                window.location.reload();
+                setError('');
+                setSuccess(message);
+                setTimeout(() => window.location.reload(), 1500);
+            } else {
+                setError(message);
+                setSuccess('');
             }
         } catch (error) {
             if (error.response && error.response.status >= 400 && error.response.status <= 500) {
@@ -101,6 +103,7 @@ function FormLogin() {
                                 onChange={handleChange}
                             />
                             {error && <Alert severity="error">{error}</Alert>}
+                            {success && <Alert severity="success">{success}</Alert>}
                             <Field
                                 as={Button}
                                 type="submit"

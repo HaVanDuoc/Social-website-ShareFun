@@ -7,7 +7,6 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { FormLogin } from '../../../redux/actions/SignInOutAction';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Alert, Box, Button, Checkbox, FormHelperText, Link, TextField, Typography } from '@mui/material';
-import ErrorIcon from '@mui/icons-material/Error';
 
 function FormRegister() {
     const initialValues = {
@@ -17,7 +16,8 @@ function FormRegister() {
         eula: false,
     };
     const dispatch = useDispatch();
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const [userInput, setUserInput] = useState({
         email: '',
@@ -37,10 +37,11 @@ function FormRegister() {
             const res = await axios.post(url, userInput);
             const message = res.data.message;
 
-            if (message !== 'Đăng ký thành công!') {
-                setError(message);
+            if (message === 'Đăng ký thành công!') {
+                setSuccess(message);
+                setTimeout(() => handleBackToFormLogin(), 1500);
             } else {
-                handleBackToFormLogin();
+                setError(message);
             }
         } catch (error) {
             if (error.response && error.response.status >= 400 && error.response.status <= 500) {
@@ -140,6 +141,7 @@ function FormRegister() {
                                 <ErrorMessage name="eula" />
                             </FormHelperText>
                             {error && <Alert severity="error">{error}</Alert>}
+                            {success && <Alert severity="success">{success}</Alert>}
                             <Field
                                 as={Button}
                                 type="submit"
