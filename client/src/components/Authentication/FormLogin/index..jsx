@@ -31,7 +31,7 @@ function FormLogin() {
     };
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().email('*Định dạng email sai').required('*Không được để trống email').default(user.email),
+        email: Yup.string().email('*Định dạng email sai').required('*Không được để trống email').default(user.email),
         password: Yup.string().required('*Mật khẩu không được để trống').default(user.password),
     });
 
@@ -41,10 +41,9 @@ function FormLogin() {
             const res = await axios.post(url, user);
             const message = res.data.message;
 
-            if (message === 'Đăng nhập thành công!') {
+            if (message === 'Đăng nhập thành công') {
                 const token = JSON.stringify(res.data);
                 localStorage.setItem('token', token);
-                localStorage.setItem('isLogged', true);
                 setError('');
                 setSuccess(message);
                 setTimeout(() => window.location.reload(), 1500);

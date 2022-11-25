@@ -4,7 +4,21 @@ const router = express.Router();
 const Post = require("../models/Posts");
 const User = require("../models/Users");
 
-// create
+// Get all posts
+router.get("/", async (req, res, next) => {
+    try {
+        const posts = await Post.find({}).populate('author')
+        res.status(200).json({
+            status: 'success',
+            result: posts.length,
+            data: { posts }
+        })
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+// create a post
 router.post("/", async (req, res) => {
     const post = new Post(req.body);
     try {
@@ -75,7 +89,7 @@ router.put("/:id/like", async (req, res) => {
 // get timeline post random
 router.get("/timeline", async (req, res) => {
     try {
-        const posts = await Post.find((post)=>{
+        const posts = await Post.find((post) => {
             return post._id
         })
         res.status(200).json(posts)

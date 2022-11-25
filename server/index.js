@@ -5,9 +5,9 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors")
-const userRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
-const postRoute = require("./routes/posts");
+const userRoute = require("./routes/usersRoute");
+const authRoute = require("./routes/authRoute");
+const postRoute = require("./routes/postsRoute");
 
 const PORT = process.env.PORT || 8080;
 
@@ -21,6 +21,7 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(cors())
 
+// Route
 app.use("/server/users", userRoute);
 app.use("/server/auth", authRoute);
 app.use("/server/posts", postRoute);

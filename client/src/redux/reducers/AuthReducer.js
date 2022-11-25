@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from '../constants'
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, CURRENT_USER } from '../constants'
 
 export const AUTH_INITIAL_STATE = {
     user: null,
@@ -26,6 +26,12 @@ const AuthReducer = (state = AUTH_INITIAL_STATE, action) => {
                 isFetching: false,
                 error: action.payload,
             }
+        case CURRENT_USER:
+            return {
+                user: action.payload,
+                isFetching: false,
+                error: false,
+            }
 
         default:
             return state
@@ -34,5 +40,6 @@ const AuthReducer = (state = AUTH_INITIAL_STATE, action) => {
 
 export const selectedUser = state => state.Auth.user
 export const selectorError = state => state.Auth.error
+export const selectorCurrentUser = state => state.Auth.user
 
 export default AuthReducer
