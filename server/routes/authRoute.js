@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/Users");
-const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
-const { register, login } = require("../controllers/authController");
+const { register, login, getCurrentUser } = require("../controllers/authController");
+const { checkCurrentUser } = require('../middlewares/checkCurrentUser')
 
-//REGISTER
 router.post("/register", register);
-
-//LOGIN
 router.post("/login", login);
+router.route('/').get(checkCurrentUser, getCurrentUser)
 
 module.exports = router;

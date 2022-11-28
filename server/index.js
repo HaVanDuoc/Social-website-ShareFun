@@ -5,9 +5,10 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors")
-const userRoute = require("./routes/usersRoute");
+const userRoute = require("./routes/userRoute");
 const authRoute = require("./routes/authRoute");
-const postRoute = require("./routes/postsRoute");
+const postRoute = require("./routes/postRoute");
+const { errorHandler } = require('./middlewares/errorHandler')
 
 const PORT = process.env.PORT || 8080;
 
@@ -22,9 +23,22 @@ app.use(morgan("common"));
 app.use(cors())
 
 // Route
-app.use("/server/users", userRoute);
+app.use("/server/user", userRoute);
 app.use("/server/auth", authRoute);
-app.use("/server/posts", postRoute);
+app.use("/server/post", postRoute);
+
+// Unhandled Route
+app.all('*', (req, res, next) => {
+    const err = new Error('Not Found')
+    err.statusCode = 404;
+    // hoặc
+    // const err = new Error({
+    //     message: 'Not Found',
+    //     statusCode: 404,
+    // })
+    next(err)
+})
+app.use(errorHandler)
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
