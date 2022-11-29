@@ -4,12 +4,34 @@ const jwt = require('jsonwebtoken');
 
 // REGISTER CONTROLLER
 exports.register = async (req, res, next) => {
+
     try {
-        if (!req.body.name) {
-            req.body.name = req.body.email
+        const { username, password, confirmPassword, policy } = req.body
+
+        // Check username is not empty
+        if (username === "" || password === "" || confirmPassword === "") {
+            const err = new Error("Vui lòng nhập đầy đủ thông tin")
+            err.statusCode = 400
+            return next(err)
         }
+
+        // Check password duplication
+        if (password !== confirmPassword) {
+            const err = new Error("Mật khẩu không trùng nhau")
+            err.statusCode = 400
+            return next(err)
+        }
+
+        // Check policy
+        if (policy === false) {
+            const err = new Error("Bạn có đồng ý với chính sách của chúng tôi")
+            err.statusCode = 400
+            return next(err)
+        }
+
         const user = await User.create(req.body)
         const token = jwt.sign({ userId: user._id }, process.env.APP_SECRET)
+
         res.status(200).json({
             status: 'success',
             data: { token, userId: user._id },
@@ -23,12 +45,11 @@ exports.register = async (req, res, next) => {
 // LOGIN CONTROLLER
 exports.login = async (req, res, next) => {
     try {
-        const user = await User.findOne({ email: req.body.email })
+        const user = await User.findOne({ username: req.body.username })
 
-        // Check Account/Email
+        // Error: Email is not correct
         if (!user) {
-            // Error: Email is not correct
-            const err = new Error("Tài khoản/email chưa  được đăng ký")
+            const err = new Error('Tài khoản/email chưa  được đăng ký')
             err.statusCode = 400
             return next(err)
         }
@@ -46,7 +67,7 @@ exports.login = async (req, res, next) => {
             })
         } else {
             // Error: Password is not correct
-            const err = new Error("Sai mật khẩuý")
+            const err = new Error("Sai mật khẩu")
             err.statusCode = 400
             return next(err)
         }
@@ -61,7 +82,7 @@ exports.getCurrentUser = async (req, res, next) => {
         const data = { user: null }
         if (req.user) {
             const user = await User.findOne({ _id: req.user.userId })
-            data.user = { userId: user.userId }
+            data.user = { userId: user._id, userName: user.username }
         }
         res.status(200).json({
             status: 'success',

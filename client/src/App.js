@@ -13,20 +13,21 @@ function App() {
 
     const checkCurrentUser = useCallback(async () => {
         try {
-            const token = JSON.parse(localStorage.getItem("token"))
-            const email = token.data.email
+            const token = localStorage.getItem("token")
+
             const option = {
                 method: "get",
-                url: "/server/users/email/" + email,
+                url: "/auth/",
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }
+            
             const response = await axios(option)
-            console.log(response);
+
             if (response.data.data.user) {
-                const { email } = response.data.data.user
-                dispatch({ type: "CURRENT_USER", payload: { email } })
+                const { user } = response.data.data
+                dispatch({ type: "CURRENT_USER", payload: { user } })
             }
         } catch (error) {
             console.log(error);

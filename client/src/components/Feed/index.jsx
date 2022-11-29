@@ -9,7 +9,7 @@ const Feed = () => {
     const posts = useFetchPost();
     const currentUser = useSelector(selectorCurrentUser)
 
-    // console.log(currentUser);
+    console.log(currentUser);
 
     return (
         <div className="hvdFeed">

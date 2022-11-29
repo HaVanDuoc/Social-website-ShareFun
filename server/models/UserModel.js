@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const bcrypt = require('bcrypt')
 
 const UserSchema = new mongoose.Schema({
-    email: { type: String, unique: true, trim: true, require: [true, 'Email must be require'] },
-    password: { type: String, trim: true, require: [true, 'Password must be require'], minlength: [6, 'Password must be least 6 characters'] },
-    name: { type: String, unique: true, trim: true, /* require: [true, 'Name must be require'] */ },
+    username: { type: String, unique: true, trim: true, require: [true, 'Tên đăng nhập/Email là bắt buộc'] },
+    password: { type: String, trim: true, require: [true, 'Mật khẩu không được để trống'], minlength: [6, 'Mật khẩu phải có ít nhất 6 ký tự'] },
+    policy: { type: Boolean }
 }, { timestamps: true })
 
 UserSchema.pre('save', function (next) {

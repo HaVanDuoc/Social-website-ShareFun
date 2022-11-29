@@ -31,11 +31,6 @@ app.use("/server/post", postRoute);
 app.all('*', (req, res, next) => {
     const err = new Error('Not Found')
     err.statusCode = 404;
-    // hoặc
-    // const err = new Error({
-    //     message: 'Not Found',
-    //     statusCode: 404,
-    // })
     next(err)
 })
 app.use(errorHandler)
