@@ -4,28 +4,33 @@ import { Feed } from '../../components/';
 import { Avatar } from '@mui/material';
 import useFetchUser from '../../hooks/useFetchUser';
 import useFetchPost from '../../hooks/useFetchPost';
+import { useSelector } from 'react-redux';
+import { selectorCurrentUser } from '../../redux/reducers/AuthReducer';
+import { selectorGetAllPosts } from '../../redux/reducers/PostReducer';
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const user = useFetchUser();
-    const posts = useFetchPost();
+    const user = useSelector(selectorCurrentUser);
+    const { username, avatar, background, firstName, lastName, signature } = user;
+    const post = useSelector(selectorGetAllPosts);
+    console.log(post)
 
     const HeaderProfile = () => {
         return (
             <div className="headerProfile">
                 <div className="coverImage">
-                    <img src={PF + user?.coverPicture} alt="" />
+                    <img src={PF + background} alt="" />
                 </div>
                 <div className="infoUser">
                     <div className="avatarImage">
-                        <Avatar src={PF + user?.avatar} alt={user?.username} sx={{ width: '100%', height: '100%' }} />
+                        <Avatar src={PF + avatar} alt={username} sx={{ width: '100%', height: '100%' }} />
                     </div>
-                    <div className="userName">{user?.firstname + ' ' + user?.lastname}</div>
-                    <div className="signature">{user?.signature}</div>
+                    <div className="userName">{firstName + ' ' + lastName}</div>
+                    <div className="signature">{signature}</div>
                 </div>
                 <div className="activityStatistics">
                     <div className="wrapperItem">
-                        <span>{posts?.length || 0}</span>
+                        {/* <span>{length || 0}</span> */}
                         <span>Bài viết</span>
                     </div>
                     <div className="wrapperItem">

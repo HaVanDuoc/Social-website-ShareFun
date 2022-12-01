@@ -5,10 +5,10 @@ import PhotoIcon from '@mui/icons-material/Photo';
 import MoodIcon from '@mui/icons-material/Mood';
 import { Avatar, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { OpenModalLogin } from '../../redux/actions/ModalAction';
-import { FormLogin } from '../../redux/actions/SignInOutAction';
-import useFetchLoggedInUser from '../../hooks/useFetchLoggedInUser';
-import useCheckLogged from '../../hooks/useCheckLogged';
+import { OpenModalLogin } from '../../../redux/actions/ModalAction';
+import { FormLogin } from '../../../redux/actions/SignInOutAction';
+import useFetchLoggedInUser from '../../../hooks/useFetchLoggedInUser';
+import useCheckLogged from '../../../hooks/useCheckLogged';
 
 const CreatePost = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;

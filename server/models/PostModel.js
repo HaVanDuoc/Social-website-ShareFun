@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // const PostSchema = new Schema(
 //     {
 //         userId: {
-//             type: String,
+//             type: Array,
 //             require: true,
 //         },
 //         title: {
@@ -44,7 +44,14 @@ const mongoose = require("mongoose");
 // module.exports = mongoose.model("Post", PostSchema);
 
 const PostSchema = new mongoose.Schema({
-    content: { type: String, required: [true, 'Post must have content'], trim: true },
+    title: { type: String, required: [true, 'Bài đăng phải có chủ đề'], trim: true },
+    content: {
+        type: String, required: [true, 'Bài đăng phải có nội dung'], trim: true
+    },
+    tag: { type: Array, default: [] },
+    favorite: { type: Array, default: [] },
+    comment: { type: Array, default: [] },
+    shared: { type: Array, default: [] },
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

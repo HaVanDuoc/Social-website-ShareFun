@@ -12,10 +12,11 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 import useFetchLoggedInUser from '../../../hooks/useFetchLoggedInUser';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FormLogin } from '../../../redux/actions/SignInOutAction';
 import { OpenModalLogin } from '../../../redux/actions/ModalAction';
 import useCheckLogged from '../../../hooks/useCheckLogged';
+import { selectorCurrentUser } from '../../../redux/reducers/AuthReducer';
 
 const AccountUser = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -23,6 +24,8 @@ const AccountUser = () => {
     const dispatch = useDispatch();
 
     // fetch data user logged
+    const currentUser = useSelector(selectorCurrentUser);
+
     const user = useFetchLoggedInUser();
     const isLogged = useCheckLogged();
 
@@ -50,7 +53,7 @@ const AccountUser = () => {
         // Click button "Trang cá nhân"
         const handleClickProfile = (e) => {
             e.preventDefault();
-            let path = 'profile/' + user.username;
+            let path = `profile/${currentUser?.user?.username}`;
             navigate(path);
         };
 
@@ -67,7 +70,7 @@ const AccountUser = () => {
                             aria-expanded={open ? 'true' : undefined}
                         >
                             <Avatar
-                                src={isLogged ? PF + user.avatar : PF + 'images/noUser.png'}
+                                src={currentUser ? PF + currentUser?.user?.avatar : PF + 'images/noUser.png'}
                                 sx={{ width: 40, height: 40 }}
                             ></Avatar>
                         </IconButton>
@@ -109,7 +112,7 @@ const AccountUser = () => {
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
                     <MenuItem onClick={handleClickProfile}>
-                        <Avatar src={PF + user.avatar} /> Trang cá nhân
+                        <Avatar src={PF + currentUser?.user?.avatar} /> {currentUser?.user?.username}
                     </MenuItem>
                     <Divider />
                     <MenuItem>
@@ -159,7 +162,7 @@ const AccountUser = () => {
         );
     };
 
-    return <Fragment>{isLogged ? <Logged /> : <NoLogged />}</Fragment>;
+    return <Fragment>{currentUser ? <Logged /> : <NoLogged />}</Fragment>;
 };
 
 export default AccountUser;

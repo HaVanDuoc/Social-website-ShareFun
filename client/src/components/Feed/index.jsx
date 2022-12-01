@@ -1,25 +1,43 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Feed.scss';
-import { CreatePost, Posts, UpToTop } from '../';
-import useFetchPost from '../../hooks/useFetchPost';
-import { useSelector } from 'react-redux';
-import { selectorCurrentUser } from '../../redux/reducers/AuthReducer';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { GET_ALL_POSTS } from '../../redux/constants';
+import PostList from './PostList';
+import CreatePost from './CreatePost';
+import UpToTop from './UpToTop';
 
 const Feed = () => {
-    const posts = useFetchPost();
-    const currentUser = useSelector(selectorCurrentUser)
+    const dispatch = useDispatch();
 
-    console.log(currentUser);
+    const getAllPosts = useCallback(async () => {
+        try {
+            const option = {
+                method: 'get',
+                url: '/post/',
+            };
+
+            const response = await axios(option);
+
+            const posts = response.data.data.posts;
+
+            dispatch({ type: GET_ALL_POSTS, payload: posts });
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    useEffect(() => {
+        getAllPosts();
+    }, [getAllPosts]);
 
     return (
         <div className="hvdFeed">
-            {/* {console.log(currentUser)} */}
             <div className="feedWrapper">
                 <UpToTop />
                 <CreatePost />
-                {posts.map((post) => (
-                    <Posts key={post._id} post={post} />
-                ))}
+                <PostList />
             </div>
         </div>
     );

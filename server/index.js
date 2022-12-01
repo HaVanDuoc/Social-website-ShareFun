@@ -23,9 +23,9 @@ app.use(morgan("common"));
 app.use(cors())
 
 // Route
-app.use("/server/user", userRoute);
-app.use("/server/auth", authRoute);
-app.use("/server/post", postRoute);
+app.use("/server/user/", userRoute);
+app.use("/server/auth/", authRoute);
+app.use("/server/post/", postRoute);
 
 // Unhandled Route
 app.all('*', (req, res, next) => {

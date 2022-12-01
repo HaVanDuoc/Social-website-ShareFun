@@ -1,5 +1,9 @@
 const express = require("express");
+const { followAUser } = require("../controllers/userController");
+const { verifyToken } = require("../middlewares/verifyToken");
 const router = express.Router();
+
+router.route("/:username/follow").put(verifyToken, followAUser)
 
 // // get a user
 // router.get("/", async (req, res) => {
@@ -54,6 +58,7 @@ const router = express.Router();
 //         return res.status(403).json("You can delete only your account");
 //     }
 // });
+
 
 // // follow a user
 // router.put("/:id/follow", async (req, res) => {
