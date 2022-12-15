@@ -4,24 +4,22 @@ import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import PhotoIcon from '@mui/icons-material/Photo';
 import MoodIcon from '@mui/icons-material/Mood';
 import { Avatar, Box } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { OpenModalLogin } from '../../../redux/actions/ModalAction';
 import { FormLogin } from '../../../redux/actions/SignInOutAction';
-import useFetchLoggedInUser from '../../../hooks/useFetchLoggedInUser';
-import useCheckLogged from '../../../hooks/useCheckLogged';
+import { selectorCurrentUser } from '../../../redux/reducers/AuthReducer';
 
 const CreatePost = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const dispatch = useDispatch();
 
     // fetch user logged
-    const user = useFetchLoggedInUser();
-    const isLogged = useCheckLogged();
+    const user = useSelector(selectorCurrentUser);
 
     const handleClick = (e) => {
         e.preventDefault();
 
-        if (!isLogged) {
+        if (!user) {
             dispatch(FormLogin());
             dispatch(OpenModalLogin());
         }
@@ -36,13 +34,13 @@ const CreatePost = () => {
                         sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', cursor: 'pointer' }}
                     >
                         <Avatar
-                            src={isLogged ? PF + user.avatar : PF + 'images/noUser.png'}
+                            src={user ? PF + user.user.avatar : PF + 'images/noUser.png'}
                             sx={{ width: 40, height: 40 }}
                         ></Avatar>
                     </Box>
                     <input
                         type="text"
-                        placeholder={user ? `Bạn đang nghĩ gì thế ${user.lastname}?` : 'Bạn đang nghĩ gì thế?'}
+                        placeholder={user ? `Bạn đang nghĩ gì thế ${user.user.username}?` : 'Bạn đang nghĩ gì thế?'}
                         onClick={handleClick}
                     />
                 </div>

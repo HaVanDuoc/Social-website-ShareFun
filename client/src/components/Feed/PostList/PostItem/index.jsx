@@ -1,24 +1,19 @@
 import axios from 'axios';
 import { format } from 'timeago.js';
 import { Box } from '@mui/material';
-import PostFooter from './PostFooter';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import React, { Fragment, useEffect, useState } from 'react';
-import useFetchLoggedInUser from '../../../../hooks/useFetchLoggedInUser';
+import React from 'react';
 import './PostItem.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectorCurrentUser } from '../../../../redux/reducers/AuthReducer';
-import { selectedModalLogin } from '../../../../redux/reducers/ModalReducer';
+import { useState } from 'react';
 
 const PostItem = ({ post }) => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const currentUser = useSelector(selectorCurrentUser);
     const dispatch = useDispatch();
-    const [isModalLogin, setIsModalLogin] = useState(true);
-
-    // console.log('currentUser.user.username ', currentUser.user.username);
-    // console.log('post.author.username ', post.author.username);
+    const [isFollow, setFollow] = useState(post.isFollow);
 
     const PostHeader = () => {
         const handleClickFollow = async () => {
@@ -38,11 +33,8 @@ const PostItem = ({ post }) => {
                 },
             };
 
-            const res = await axios(option);
-
-            // if (res) {
-            //     set;
-            // }
+            await axios(option);
+            setFollow(!isFollow);
         };
 
         const ButtonFollow = () => {
@@ -75,7 +67,7 @@ const PostItem = ({ post }) => {
                         </div>
                     </div>
                 </Link>
-                {post.isFollow ? <ButtonFollow /> : <React.Fragment />}
+                {post.isFollow ? <React.Fragment /> : <ButtonFollow />}
             </div>
         );
     };

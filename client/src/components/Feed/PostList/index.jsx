@@ -6,22 +6,25 @@ import PostItem from './PostItem';
 
 const PostList = () => {
     const currentUser = useSelector(selectorCurrentUser);
-    // console.log('currentUser: ', currentUser);
     const allPosts = useSelector(selectorGetAllPosts);
 
     // console.log(allPosts);
 
     const newPost = allPosts?.map((post) => {
+        // console.log(currentUser.user?.following.includes(post.author?.username));
 
-        // console.log(post)
-        
         // Add field data to newPost
-        post = { ...post, username: post.author?.username, avatar: post.author?.avatar };
+        post = {
+            ...post,
+            username: post.author?.username,
+            avatar: post.author?.avatar,
+        };
 
         if (currentUser) {
-            return post.author?._id === currentUser.user?._id
-                ? { ...post, isFollow: false }
-                : { ...post, isFollow: true };
+            return currentUser.user?.username === post.author?.username ||
+                currentUser.user?.following.includes(post.author?.username)
+                ? { ...post, isFollow: true }
+                : { ...post, isFollow: false };
         } else {
             return { ...post, isFollow: false };
         }
