@@ -1,44 +1,4 @@
 const mongoose = require("mongoose");
-//     {
-//         userId: {
-//             type: Array,
-//             require: true,
-//         },
-//         title: {
-//             type: String,
-//         },
-//         desc: {
-//             type: String,
-//         },
-//         img: {
-//             type: String,
-//             require: true,
-//         },
-//         tag: {
-//             type: Array,
-//             default: [],
-//         },
-//         favourites: {
-//             type: Array,
-//             default: [],
-//         },
-//         comments: {
-//             type: Array,
-//             default: [],
-//         },
-//         shares: {
-//             type: Array,
-//             default: [],
-//         },
-//         views: {
-//             type: Array,
-//             default: [],
-//         },
-//     },
-//     { timestamps: true }
-// );
-
-// module.exports = mongoose.model("Post", PostSchema);
 
 const PostSchema = new mongoose.Schema({
     title: { type: String, required: [true, 'Bài đăng phải có chủ đề'], trim: true },

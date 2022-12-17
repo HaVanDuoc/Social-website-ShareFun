@@ -3,6 +3,8 @@ const { followAUser } = require("../controllers/userController");
 const { verifyToken } = require("../middlewares/verifyToken");
 const router = express.Router();
 
+// router.route("/:username").get(verifyToken, getAUser).put(verifyToken, updateAUser).delete(verifyToken, deleteAUser)
+
 router.route("/:username/follow").put(verifyToken, followAUser)
 
 // // get a user

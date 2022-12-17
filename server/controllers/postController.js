@@ -3,7 +3,7 @@ const Post = require("../models/PostModel")
 // GET ALL POSTS
 exports.getAllPosts = async (req, res, next) => {
     try {
-        const posts = await Post.find({}).populate('author', 'username avatar').select('content createdAt updatedAt')
+        const posts = await Post.find({}).populate('author', 'username avatar').select('title content view tag favorite comment shared createdAt updatedAt')
         res.status(200).json({
             status: 'success',
             result: posts.length,
@@ -56,7 +56,6 @@ exports.updateAPost = async (req, res, next) => {
         })
     } catch (error) {
         next(error)
-        // res.json(error)
     }
 }
 

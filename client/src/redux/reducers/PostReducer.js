@@ -18,4 +18,4 @@ const PostReducer = (state = POST_INITIAL_STATE, action) => {
 
 export default PostReducer
 
-export const selectorGetAllPosts = state => state.Post.post
+export const selectorGetAllPosts = state => state?.Post?.post

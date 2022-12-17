@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Profile.scss';
 import { Feed } from '../../components/';
 import { Avatar } from '@mui/material';
-import useFetchUser from '../../hooks/useFetchUser';
-import useFetchPost from '../../hooks/useFetchPost';
 import { useSelector } from 'react-redux';
 import { selectorCurrentUser } from '../../redux/reducers/AuthReducer';
 import { selectorGetAllPosts } from '../../redux/reducers/PostReducer';
@@ -11,10 +9,17 @@ import { selectorGetAllPosts } from '../../redux/reducers/PostReducer';
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const user = useSelector(selectorCurrentUser);
-    const { username, avatar, background, firstName, lastName, signature } = user;
     const post = useSelector(selectorGetAllPosts);
-    console.log(post)
 
+    console.log(user)
+
+    const [username, setUsername] = useState(user.username)
+    const [avatar, setAvatar] = useState(user.avatar)
+    const [background, setBackground] = useState(user.background)
+    const [firstName, setFirstName] = useState(user.firstName)
+    const [lastName, setLastName] = useState(user.lastName)
+    const [signature, setSignature] = useState(user.signature)
+    
     const HeaderProfile = () => {
         return (
             <div className="headerProfile">
