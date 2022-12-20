@@ -8,7 +8,7 @@ const PostList = () => {
     const currentUser = useSelector(selectorCurrentUser);
     const allPosts = useSelector(selectorGetAllPosts);
 
-    console.log(allPosts);
+    // console.log(allPosts);
 
     const newPost = allPosts?.map((post) => {
         // console.log(currentUser.user?.following.includes(post.author?.username));

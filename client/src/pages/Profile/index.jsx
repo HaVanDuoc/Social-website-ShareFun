@@ -2,24 +2,31 @@ import React, { useState } from 'react';
 import './Profile.scss';
 import { Feed } from '../../components/';
 import { Avatar } from '@mui/material';
-import { useSelector } from 'react-redux';
 import { selectorCurrentUser } from '../../redux/reducers/AuthReducer';
 import { selectorGetAllPosts } from '../../redux/reducers/PostReducer';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const user = useSelector(selectorCurrentUser);
     const post = useSelector(selectorGetAllPosts);
 
-    console.log(user)
+    console.log(user.user);
 
-    const [username, setUsername] = useState(user.username)
-    const [avatar, setAvatar] = useState(user.avatar)
-    const [background, setBackground] = useState(user.background)
-    const [firstName, setFirstName] = useState(user.firstName)
-    const [lastName, setLastName] = useState(user.lastName)
-    const [signature, setSignature] = useState(user.signature)
-    
+    // console.log(post);
+
+    const [username, setUsername] = useState(user.user.username);
+    const [avatar, setAvatar] = useState(user.user.avatar);
+    const [background, setBackground] = useState(user.user.background);
+    const [firstName, setFirstName] = useState(user.user.firstName);
+    const [lastName, setLastName] = useState(user.user.lastName);
+    const [signature, setSignature] = useState(user.user.signature);
+    const [like, setLike] = useState(user.user.like);
+    const [follower, setFollower] = useState(user.user.follower);
+    const [following, setFollowing] = useState(user.user.following);
+
+    const [postLenght, setPostLenght] = useState(post.length);
+
     const HeaderProfile = () => {
         return (
             <div className="headerProfile">
@@ -30,24 +37,24 @@ const Profile = () => {
                     <div className="avatarImage">
                         <Avatar src={PF + avatar} alt={username} sx={{ width: '100%', height: '100%' }} />
                     </div>
-                    <div className="userName">{firstName + ' ' + lastName}</div>
+                    <div className="userName">{username}</div>
                     <div className="signature">{signature}</div>
                 </div>
                 <div className="activityStatistics">
                     <div className="wrapperItem">
-                        {/* <span>{length || 0}</span> */}
+                        <span>{postLenght || 0}</span>
                         <span>Bài viết</span>
                     </div>
                     <div className="wrapperItem">
-                        <span>{user?.followings?.length || 0}</span>
+                        <span>{following || 0}</span>
                         <span>Đang theo dõi</span>
                     </div>
                     <div className="wrapperItem">
-                        <span>{user?.followers?.length || 0}</span>
+                        <span>{follower || 0}</span>
                         <span>Người theo dõi</span>
                     </div>
                     <div className="wrapperItem">
-                        <span>{0}</span>
+                        <span>{like || 0}</span>
                         <span>Được thích</span>
                     </div>
                 </div>
@@ -58,7 +65,7 @@ const Profile = () => {
     const AchievementProfile = () => {
         return (
             <div className="wrapperItem achievementProfile">
-                <div className="title">{user.firstname + ' ' + user.lastname}</div>
+                <div className="title">{username}</div>
                 <div className="item">
                     <div className="name">Số ngày hoạt động</div>
                     <div className="value">614</div>
