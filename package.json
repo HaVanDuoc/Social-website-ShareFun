@@ -1,5 +1,10 @@
 {
   "dependencies": {
+    "customize-cra": "^1.0.0",
     "react-router": "^6.4.3"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.1.0",
+    "react-app-rewired": "^2.2.1"
   }
 }
